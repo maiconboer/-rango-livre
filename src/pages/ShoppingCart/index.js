@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import {FiCreditCard, FiDollarSign, FiChevronsLeft, FiTruck, FiClock, FiCheck } from 'react-icons/fi'
+import {FiCreditCard, FiDollarSign, FiChevronsLeft, FiTruck, FiClock, FiCheck, FiCheckCircle } from 'react-icons/fi'
 
-import { Container, Content, UserData, Cash, ContainerDish, PurchaseDetails, CheckOut, SelectPaymentMethod } from './styles';
+import { Container, Content, UserData, Cash, ContainerDish, PurchaseDetails, CheckOut, SelectPaymentMethod, PaymentSuccess } from './styles';
 
 import SelectDish from '../../components/SelectDish'
 
@@ -17,7 +17,12 @@ const ShoppingCart = () => {
 
   function handleRemoveModalMethodPayment() {
     const modalMethodPayment = document.querySelector('.paymentMethod')
+
+    const InputPassword = document.querySelector('.password')
     modalMethodPayment.classList.remove('active')
+
+    InputPassword.value = '';
+
   }
 
   return (
@@ -100,9 +105,11 @@ const ShoppingCart = () => {
                   </span>
 
                   <input
-                    type="password"
-                    name="password"
-                    placeholder='Digite sua senha'/>
+                    type='password'
+                    name='password'
+                    className='password'
+                    placeholder='Digite sua senha'
+                  />
 
                   <div className='buttons'>
                     {/* adicionar um form e submit nos btn */}
@@ -120,10 +127,19 @@ const ShoppingCart = () => {
                         Cancelar
                     </button>
                   </div>
+            </div>
+          </SelectPaymentMethod>
 
+          {/* Se o pagamento for bem sucedido, adicionar a classe active neste modal via js */}
+          <PaymentSuccess>
+            <div className='paymentSuccess'>
+              <h2>
+                  <FiCheckCircle size={48}/>
+                  Pedido finalizado</h2>
+                  <Link to='home-client'>Ir para home</Link>
             </div>
 
-          </SelectPaymentMethod>
+          </PaymentSuccess>
 
         </Content>
       </Container>

@@ -141,7 +141,7 @@ export const SelectPaymentMethod = styled.div`
     border-radius: 4px;
     position: absolute;
     top: 200px;
-    left: 24px;
+    width: 360px;
   }
 
 
@@ -198,6 +198,47 @@ export const SelectPaymentMethod = styled.div`
 
     .btn-cancel {
       background-color: #EB745A;
+    }
+  }
+`;
+
+export const PaymentSuccess = styled.div`
+
+  text-align: right;
+  .paymentSuccess {
+    display: none;
+    background-color: var(--color5);
+    border-radius: 4px;
+    position: absolute;
+    top: 200px;
+    width: 360px;
+  }
+
+  .active {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+
+
+    h2 {
+      color: var(--color1);
+      margin-bottom: 16px;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+   a {
+    text-align: right;
+    margin: -8px 44px 0 0;
+    color: var(--color3);
+   }
+
+    svg {
+      color: var(--color1);
+      margin-right: 8px
     }
   }
 `;
