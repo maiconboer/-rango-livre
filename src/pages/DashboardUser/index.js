@@ -17,7 +17,7 @@ const DashboardUser = () => {
               <Cash>
                 <div>
                   <FiCreditCard size={20}/>
-                  <span>Mercado vale</span>
+                  <span>Mercado Vale</span>
                 </div>
                 <span>R$ 150,00</span>
               </Cash>
@@ -25,7 +25,7 @@ const DashboardUser = () => {
               <Cash>
                 <div>
                   <FiDollarSign size={20} />
-                  <span>Mercado vale</span>
+                  <span>Mercado Pago</span>
                 </div>
                 <span>R$ 150,00</span>
 

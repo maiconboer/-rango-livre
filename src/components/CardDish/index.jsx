@@ -1,11 +1,11 @@
 import React from 'react';
-import { FiStar } from 'react-icons/fi'
+import { FiStar, FiEdit3 } from 'react-icons/fi'
 
 import { Container, ImageDish, Description, EvaluationAndValue } from './styles'
 
 import dishImg from '../../assets/dish.jpg'
 
-const Dish = () => {
+const Dish = (props) => {
 
   return (
     <Container>
@@ -21,7 +21,10 @@ const Dish = () => {
         <div>
           <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
         </div>
-        <span className='value'>R$ 46</span>
+        { props.company
+        ? <span className='editDish'><FiEdit3 size={18} /></span>
+        : <span className='value'>R$ 59</span>
+        }
       </EvaluationAndValue>
     </Container>
   )

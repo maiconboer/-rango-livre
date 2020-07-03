@@ -19,7 +19,10 @@ const Routes= () => {
   return (
     <Switch>
       {/* <Route path="/" exact component={SignIn} /> */}
-      <Route path="/" exact component={DashboardUser} />
+
+
+      {/* <Route path="/" exact component={DashboardUser} /> */}
+      <Route path="/" exact component={DashboardCompany} />
       <Route path="/signup-user" component={SignUpUser} />
       <Route path="/signup-company" component={SignUpCompany} />
       <Route path="/type-registration" component={TypeRegistration} />
