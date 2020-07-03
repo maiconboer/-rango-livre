@@ -6,7 +6,7 @@ import { Container, Content, UserData, Cash, ContainerDish, ShoppingCart } from 
 
 import Dish from '../../components/CardDish'
 
-const DashboardUser = () => {
+const HomeClient = () => {
 
   return (
     <>
@@ -36,11 +36,11 @@ const DashboardUser = () => {
               </div>
 
               <div className='historic-transfer'>
-                <Link to='/historico'>
+                <Link to='/historic'>
                   Visualizar histórico de compras <FiChevronsRight size={20} />
                 </Link>
 
-                <Link to='/transferencia'>
+                <Link to='/transfer-money'>
                   Realizar transferencia<FiChevronsRight size={20} />
                 </Link>
               </div>
@@ -49,20 +49,42 @@ const DashboardUser = () => {
 
           <h3 className='suggestions'>Sugestões da semana <span>Cardápio <FiChevronsRight /></span></h3>
 
-          {/* map nos pratos, fotos, descriptions e etc */}
+          {/* map nos pratos, fotos, descriptions, link para demais pratos da empresa e etc */}
           <ContainerDish>
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
+
+            <Link to='details'>
+              <Dish />
+            </Link>
+
+            <Link to='details'>
+              <Dish />
+            </Link>
+
+            <Link to='details'>
+              <Dish />
+            </Link>
+
+            <Link to='details'>
+              <Dish />
+            </Link>
+
+            <Link to='details'>
+              <Dish />
+            </Link>
+
+            <Link to='details'>
+              <Dish />
+            </Link>
+
+            <Link to='details'>
+              <Dish />
+            </Link>
+
+            <Link to='details'>
+              <Dish />
+            </Link>
+
+
           </ContainerDish>
 
           <ShoppingCart>
@@ -74,4 +96,4 @@ const DashboardUser = () => {
   );
 };
 
-export default DashboardUser;
+export default HomeClient;

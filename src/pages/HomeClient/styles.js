@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  max-width: 800px;
+  max-width: 360px;
   width: 100%;
   color: var(--color5);
   margin: 0 auto;
@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   .suggestions {
     color: var(--color2);
-    margin: 20px 20px 0 20px;
+    margin: 20px;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
@@ -43,24 +43,16 @@ export const UserData = styled.div`
 
   .historic-transfer {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 16px;
     text-align: center;
-
-    @media screen and (max-width: 520px ) {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     a {
       display: flex;
       text-decoration: none;
       color: var(--color5);
-
-      @media screen and (max-width: 520px ) {
-        margin-top: 8px
-    }
+      margin-top: 16px
     }
   }
 `;
@@ -84,20 +76,18 @@ export const Cash = styled.div`
 `;
 
 export const ContainerDish = styled.div`
-  max-width: 800px;
+  max-width: 360px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   padding: 0 10px;
 
-  @media screen and (max-width: 620px ) {
-    grid-template-columns: repeat(3, 1fr);
+  a {
+    text-decoration: none;
+    cursor: pointer;
   }
 
-  @media screen and (max-width: 480px ) {
-    grid-template-columns: repeat(2, 1fr);
-  }
 `;
 
 export const ShoppingCart = styled.div`

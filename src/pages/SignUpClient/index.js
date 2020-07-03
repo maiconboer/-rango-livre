@@ -16,7 +16,7 @@ import Button from '../../components/Button';
 
 import { Container, Content, AnimationContainer } from './styles';
 
-const SignUpUser = () => {
+const SignUpClient = () => {
   const formRef = useRef(null);
   const { addToast } = useToast();
   const history = useHistory();
@@ -113,4 +113,4 @@ const SignUpUser = () => {
   );
 };
 
-export default SignUpUser;
+export default SignUpClient;

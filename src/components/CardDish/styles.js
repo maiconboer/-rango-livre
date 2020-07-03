@@ -6,7 +6,6 @@ export const Container = styled.div`
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.15);
   background-color: var(--color5);
   border-radius: 4px;
-  margin: 20px auto 0;
 `;
 
 export const ImageDish = styled.div`

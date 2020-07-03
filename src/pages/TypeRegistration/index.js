@@ -16,7 +16,7 @@ const TypeRegistration = () => {
           <img src={logoImg} alt="GoBarber" />
 
 
-              <Link to='/signup-user'>
+              <Link to='/signup-client'>
                 <Button>Sou cliente</Button>
               </Link>
 

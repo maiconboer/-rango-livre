@@ -6,7 +6,7 @@ import { Container, Content, UserData, ContainerDish, Plus } from './styles';
 
 import Dish from '../../components/CardDish'
 
-const DashboardCompany = () => {
+const HomeCompany = () => {
 
   return (
     <>
@@ -39,4 +39,4 @@ const DashboardCompany = () => {
   );
 };
 
-export default DashboardCompany;
+export default HomeCompany;
