@@ -104,3 +104,99 @@ export const PurchaseDetails = styled.div`
     margin-right: 8px;
   }
 `;
+
+export const CheckOut = styled.div`
+  background-color: var(--color1);
+  width: 224px;
+  height: 30px;
+  border-radius: 4px;
+  margin: 30px auto;
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color5);
+    text-decoration: none;
+  }
+
+  svg {
+    margin-right: 4px;
+  }
+`;
+
+export const SelectPaymentMethod = styled.div`
+
+  .paymentMethod {
+    display: none;
+    background-color: var(--color5);
+    border-radius: 4px;
+    position: absolute;
+    top: 200px;
+    left: 24px;
+
+  }
+
+
+  .active {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+
+    h2 {
+      color: var(--color1);
+      margin-bottom: 16px;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    span {
+      display: flex;
+      color: var(--color3);
+      margin-bottom: 16px;
+      font-weight: bold;
+    }
+
+    svg {
+      color: var(--color3);
+      margin-right: 8px
+    }
+
+    input {
+      border: none;
+      background-color: var(--color4);
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn-confirm,
+    .btn-cancel {
+      width: 136px;
+      height: 38px;
+      border: none;
+      color: var(--color5);
+      border-radius: 4px;
+    }
+
+    .btn-confirm {
+      background-color: #6BD589;
+    }
+
+    .btn-cancel {
+      background-color: #EB745A;
+    }
+  }
+`;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import {FiCreditCard, FiDollarSign, FiChevronsLeft, FiTruck, FiClock } from 'react-icons/fi'
+import {FiCreditCard, FiDollarSign, FiChevronsLeft, FiTruck, FiClock, FiCheck } from 'react-icons/fi'
 
-import { Container, Content, UserData, Cash, ContainerDish, PurchaseDetails } from './styles';
+import { Container, Content, UserData, Cash, ContainerDish, PurchaseDetails, CheckOut, SelectPaymentMethod } from './styles';
 
 import SelectDish from '../../components/SelectDish'
 
@@ -55,6 +55,45 @@ const ShoppingCart = () => {
             <span><FiClock size={40} />Tempo de entrega: 45 min</span>
           </PurchaseDetails>
 
+          <CheckOut>
+            <Link to='shopping-cart'>
+              <FiCheck size={20} />
+                Finalizar pedido
+            </Link>
+          </CheckOut>
+
+          <SelectPaymentMethod>
+            <div className='paymentMethod active'>
+              <h2>Escolha a forma de pagamento</h2>
+                  <span>
+                    <FiCreditCard size={20}/>
+                    Mercado Vale
+                  </span>
+
+                  <span>
+                    <FiCreditCard size={20}/>
+                    Mercado Pago
+                  </span>
+
+                  <span>
+                    <FiDollarSign size={20}/>
+                    Dinheiro
+                  </span>
+
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder='Digite sua senha'/>
+
+                  <div className='buttons'>
+                    {/* adicionar um form e submit nos btn */}
+                    <button   className='btn-confirm'>Confirmar</button>
+                    <button className='btn-cancel'>Cancelar</button>
+                  </div>
+
+            </div>
+
+          </SelectPaymentMethod>
 
         </Content>
       </Container>
