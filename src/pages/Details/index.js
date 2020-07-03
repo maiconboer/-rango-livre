@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import {FiChevronsLeft, FiStar } from 'react-icons/fi'
+import {FiChevronsLeft, FiStar, FiCheck } from 'react-icons/fi'
 
-import { Container, Content, ImageDish, ContainerDish } from './styles';
+import { Container, Content, ImageDish, ContainerDish, PlaceOrder } from './styles';
 
 import dishImg from '../../assets/dish.jpg'
 
-import Dish from '../../components/CardDish'
+import SelectDish from '../../components/SelectDish'
 
 const Details = () => {
 
@@ -34,20 +34,22 @@ const Details = () => {
 
           {/* map nos pratos, fotos, descriptions e etc */}
           <ContainerDish>
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
-            <Dish />
+            <SelectDish />
+            <SelectDish />
+            <SelectDish />
+            <SelectDish />
+            <SelectDish />
+            <SelectDish />
+            <SelectDish />
+            <SelectDish />
           </ContainerDish>
 
+          <PlaceOrder>
+            <Link to='shopping-cart'>
+              <FiCheck size={20} />
+                Pedir agora
+            </Link>
+          </PlaceOrder>
 
         </Content>
       </Container>

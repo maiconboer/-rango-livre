@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsRight, FiShoppingCart } from 'react-icons/fi'
 
-import { Container, Content, UserData, Cash, ContainerDish, ShoppingCart } from './styles';
+import { Container, Content, UserData, Cash, ContainerDish, ShoppingCartIcon } from './styles';
 
 import Dish from '../../components/CardDish'
 
@@ -87,9 +87,9 @@ const HomeClient = () => {
 
           </ContainerDish>
 
-          <ShoppingCart>
+          <ShoppingCartIcon>
             <FiShoppingCart size={24}/>
-          </ShoppingCart>
+          </ShoppingCartIcon>
         </Content>
       </Container>
     </>

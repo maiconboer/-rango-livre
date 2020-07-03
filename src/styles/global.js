@@ -20,7 +20,7 @@ export default createGlobalStyle`
     background: var(--color4);
     color: var(--color2);
     -webkit-font-smoothing: antialiased;
-
+    min-width: 360px;
   }
 
   body, input, button {

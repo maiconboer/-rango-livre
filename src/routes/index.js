@@ -13,11 +13,10 @@ import HomeClient from '../pages/HomeClient';
 import HomeCompany from '../pages/HomeCompany';
 
 import Details from '../pages/Details';
+import ShoppingCart from '../pages/ShoppingCart';
 
 
-import Teste from '../pages/Teste';
-
-const Routes= () => {
+const Routes = () => {
   return (
     <Switch>
 
@@ -28,7 +27,7 @@ const Routes= () => {
 
       {/* <Route path="/" exact component={SignIn} /> */}
 
-      <Route path="/" exact component={HomeClient} />
+      <Route path="/" exact component={ShoppingCart} />
 
       <Route path="/signup-client" component={SignUpClient} />
       <Route path="/signup-company" component={SignUpCompany} />
@@ -41,7 +40,7 @@ const Routes= () => {
 
       <Route path="/details" component={Details} /*isPrivate */ />
 
-      <Route path="/teste" component={Teste} /*isPrivate */ />
+      <Route path="/shopping-cart" component={ShoppingCart} /*isPrivate */ />
     </Switch>
   );
 };

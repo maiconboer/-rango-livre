@@ -8,52 +8,33 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  .suggestions {
-    color: var(--color2);
-    margin: 20px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
 
-    span {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--color1);
-    }
+  .backToDetail {
+    margin: 16px;
+    color: var(--color1);
+    font-weight: bold;
+    font-size: 16px;
+
+    display: flex;
+    align-items: center;
   }
+
+  a {
+      text-decoration: none;
+    }
 `;
 
 export const UserData = styled.div`
   background-color: var(--color1);
   border-radius: 0 0 20px 20px;
   padding: 20px;
-
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
+  margin-bottom: 16px;
 
   .total {
     margin-top: 16px;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
-  }
-
-  .historic-transfer {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    a {
-      display: flex;
-      text-decoration: none;
-      color: var(--color5);
-      margin-top: 16px
-    }
   }
 `;
 
@@ -63,7 +44,6 @@ export const Cash = styled.div`
   align-items: center;
   max-width: 400px;
   margin: 8px auto;
-
 
   div {
     display: flex;
@@ -79,15 +59,13 @@ export const ContainerDish = styled.div`
   max-width: 360px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 10px;
-  padding: 0 10px;
 
   a {
     text-decoration: none;
     cursor: pointer;
   }
-
 `;
 
 export const ShoppingCartIcon = styled.div`
@@ -103,5 +81,26 @@ export const ShoppingCartIcon = styled.div`
 
   svg {
     margin-left: -2px;
+  }
+`;
+
+export const PurchaseDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  span {
+    display: flex;
+    align-items: center;
+    color: var(--color1);
+    margin-top: 16px;
+    font-weight: bold;
+  }
+
+  svg {
+    background-color: var(--color1);
+    color: var(--color5);
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 8px;
   }
 `;
