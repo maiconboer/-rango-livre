@@ -8,6 +8,18 @@ import SelectDish from '../../components/SelectDish'
 
 const ShoppingCart = () => {
 
+  // criar a lógica paa verificar se o cliente possui saldo (mercado pago ou mercado vale) para finalizar o pedido, se a compra for efetuada com sucesso, remover o modal de escolher forma de pagamento e renderizar o modal de finalização do pedido, caso não houver saldo, renderizar modal sobre erro no pedido e etc
+
+  function handleShowModalMethodPayment() {
+    const modalMethodPayment = document.querySelector('.paymentMethod')
+    modalMethodPayment.classList.add('active')
+  }
+
+  function handleRemoveModalMethodPayment() {
+    const modalMethodPayment = document.querySelector('.paymentMethod')
+    modalMethodPayment.classList.remove('active')
+  }
+
   return (
     <>
       <Container>
@@ -56,14 +68,21 @@ const ShoppingCart = () => {
           </PurchaseDetails>
 
           <CheckOut>
-            <Link to='shopping-cart'>
-              <FiCheck size={20} />
-                Finalizar pedido
-            </Link>
+
+
+                <button className='btnCheckOut'
+                  onClick={handleShowModalMethodPayment}
+                >
+                  <Link to='shopping-cart'>
+                  <FiCheck size={20} />
+                  Finalizar pedido
+                  </Link>
+                </button>
+
           </CheckOut>
 
           <SelectPaymentMethod>
-            <div className='paymentMethod active'>
+            <div className='paymentMethod'>
               <h2>Escolha a forma de pagamento</h2>
                   <span>
                     <FiCreditCard size={20}/>
@@ -87,8 +106,19 @@ const ShoppingCart = () => {
 
                   <div className='buttons'>
                     {/* adicionar um form e submit nos btn */}
-                    <button   className='btn-confirm'>Confirmar</button>
-                    <button className='btn-cancel'>Cancelar</button>
+                    <button
+                      className='btn-confirm'
+
+                    >
+                      Confirmar
+                    </button>
+
+                    <button
+                      className='btn-cancel'
+                      onClick={handleRemoveModalMethodPayment}
+                    >
+                        Cancelar
+                    </button>
                   </div>
 
             </div>

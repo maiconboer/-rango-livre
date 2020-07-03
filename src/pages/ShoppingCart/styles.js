@@ -106,17 +106,19 @@ export const PurchaseDetails = styled.div`
 `;
 
 export const CheckOut = styled.div`
-  background-color: var(--color1);
-  width: 224px;
-  height: 30px;
-  border-radius: 4px;
-  margin: 30px auto;
-  text-transform: uppercase;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
+  .btnCheckOut {
+    background-color: var(--color1);
+    width: 224px;
+    height: 44px;
+    border-radius: 4px;
+    margin: 30px auto;
+    text-transform: uppercase;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
 
   a {
     display: flex;
@@ -140,7 +142,6 @@ export const SelectPaymentMethod = styled.div`
     position: absolute;
     top: 200px;
     left: 24px;
-
   }
 
 

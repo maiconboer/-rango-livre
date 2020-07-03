@@ -78,7 +78,7 @@ export const ContainerDish = styled.div`
 export const PlaceOrder = styled.div`
   background-color: var(--color1);
   width: 224px;
-  height: 30px;
+  height: 44px;
   border-radius: 4px;
   margin: 30px auto;
   text-transform: uppercase;
