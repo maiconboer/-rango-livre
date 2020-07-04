@@ -79,9 +79,8 @@ const HomeClient = () => {
 
           {products[0] ? products[0].map(product => (
             <Link key={product.uuid} to='products'>
-              <Dish name={product} />
-              {console.log(product)
-              }
+              <Dish products={product} />
+
             </Link>
           ))
           : ''}

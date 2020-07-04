@@ -8,14 +8,17 @@ import { Container, ImageDish, Description, EvaluationAndValue } from './styles'
 
 const Dish = (props) => {
 
+  let product = props.products
+
   return (
       <Container>
+        {console.log(product)}
           <ImageDish>
-            <img src='.' alt='.'/>
+            <img src={product.image} alt={product.name}/>
           </ImageDish>
           <Description>
-            <p>aa</p>
-            <span>aa</span>
+            <p>{product.name}</p>
+            <span>{product.restaurant}</span>
           </Description>
 
           <EvaluationAndValue>
@@ -24,7 +27,7 @@ const Dish = (props) => {
           </div>
           { props.company
             ? <span className='editDish'><FiEdit3 size={18} /></span>
-            : <span className='value'>a</span>
+            : <span className='value'>{formatMoney(product.actual_price)}</span>
           }
           </EvaluationAndValue>
       </Container>
