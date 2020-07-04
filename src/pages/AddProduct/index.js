@@ -3,15 +3,16 @@ import React, { useState } from 'react';
 
 import api from '../../services/api';
 
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiChevronsLeft } from 'react-icons/fi';
 import { Container, Content, UserData, ContainerForm } from './styles';
 
 import Dropzone from '../../components/Dropzone';
 
 const AddProduct = () => {
-  const [selectedFile, setSelectedFile] = useState()
+  const history = useHistory();
 
+  const [selectedFile, setSelectedFile] = useState()
   const [formData, setFormData] = useState({
 
     name: '',
@@ -35,7 +36,7 @@ const AddProduct = () => {
   async function handleSubmit(event) {
     event.preventDefault()
 
-    const { name, category, actual_price, regular_price, discount, delivery_fare, description, restaurant, min_estimative, max_estimative } = formData
+    const { name, category, actual_price, regular_price, discount, delivery_fare, description, restaurant, min_estimative, max_estimative, city } = formData
 
     const data = new FormData()
       data.append('name', name)
@@ -48,15 +49,17 @@ const AddProduct = () => {
       data.append('restaurant', restaurant)
       data.append('min_estimative', Number(min_estimative))
       data.append('max_estimative', Number(max_estimative))
+      data.append('city', city)
 
       if(selectedFile) {
           data.append('image', selectedFile)
       }
 
-      alert('Cadastro realizado com sucesso!')
-
       const response = await api.post('products', data)
-    console.log(response);
+
+      if(response.data) {
+        history.push('/home-client');
+      }
 
   }
 
