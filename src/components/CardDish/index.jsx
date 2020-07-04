@@ -5,21 +5,17 @@ import formatMoney from '../../utils/formatMoney'
 
 import { Container, ImageDish, Description, EvaluationAndValue } from './styles'
 
+
 const Dish = (props) => {
 
-
   return (
-    <Container>
-
-      {props.products[0] ? props.products[0].map(product => (
-
-        <>
+      <Container>
           <ImageDish>
-            <img key={product.uuid} src={product.image} alt={product.name}/>
+            <img src='.' alt='.'/>
           </ImageDish>
           <Description>
-            <p>{product.name}</p>
-            <span>{product.restaurant}</span>
+            <p>aa</p>
+            <span>aa</span>
           </Description>
 
           <EvaluationAndValue>
@@ -28,13 +24,10 @@ const Dish = (props) => {
           </div>
           { props.company
             ? <span className='editDish'><FiEdit3 size={18} /></span>
-            : <span className='value'>{formatMoney(product.actual_price)}</span>
+            : <span className='value'>a</span>
           }
           </EvaluationAndValue>
-        </>
-      )) : 'Carregando pratos...'}
-
-    </Container>
+      </Container>
   )
 }
 
