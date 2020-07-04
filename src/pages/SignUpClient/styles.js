@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
-padding: 40px 10px;
+  padding: 40px 10px;
   display: flex;
   align-items: stretch;
 `;
@@ -33,11 +33,13 @@ export const AnimationContainer = styled.div`
   animation: ${appearFromRight} 1s;
 
   form {
-    margin: 40px 0;
+    margin: 36px 0;
     width: 340px;
     text-align: center;
 
     h1 {
+      font-size: 24px;
+      color: #555;
       margin-bottom: 24px;
     }
 
@@ -70,7 +72,7 @@ export const AnimationContainer = styled.div`
     }
 
     svg {
-      margin-right: 16px;
+      margin-right: 8px;
     }
   }
 `;

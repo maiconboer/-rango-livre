@@ -1,5 +1,13 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { FiArrowLeft, FiFileText, FiMail, FiUser, FiLock, FiSmartphone, FiCompass } from 'react-icons/fi';
+import {
+  FiArrowLeft,
+  FiFileText,
+  FiMail,
+  FiUser,
+  FiLock,
+  FiSmartphone,
+  FiCompass,
+} from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
@@ -22,26 +30,26 @@ const SignUpClient = () => {
   const { addToast } = useToast();
   const history = useHistory();
 
-  const [city, setCity] = useState()
-  const [uf, setUf] = useState()
+  const [city, setCity] = useState();
+  const [uf, setUf] = useState();
 
   async function handleGetCep(event) {
-      let inputCep = event.target.value
+    let inputCep = event.target.value;
 
-      if(inputCep) {
-        const response = await getInformationsCity(inputCep)
-        setCity(response.localidade)
-        setUf(response.uf)
-      }
+    if (inputCep) {
+      const response = await getInformationsCity(inputCep);
+      setCity(response.localidade);
+      setUf(response.uf);
+    }
   }
 
   function handleTest(event) {
-    setCity(city)
-    setUf(uf)
-}
+    setCity(city);
+    setUf(uf);
+  }
 
   const handleSubmit = useCallback(
-    async (data) => {
+    async data => {
       try {
         formRef.current.setErrors({});
 
@@ -66,7 +74,20 @@ const SignUpClient = () => {
           abortEarly: false,
         });
 
-        const { email, password, CPF, name, phone_number, nickname, street, number, description, CEP, city, uf } = data
+        const {
+          email,
+          password,
+          CPF,
+          name,
+          phone_number,
+          nickname,
+          street,
+          number,
+          description,
+          CEP,
+          city,
+          uf,
+        } = data;
 
         data = {
           email,
@@ -74,16 +95,18 @@ const SignUpClient = () => {
           CPF,
           name,
           phone_number,
-          addresses: [{
-            nickname,
-            street,
-            number,
-            description,
-            CEP,
-            city,
-            uf
-          }]
-        }
+          addresses: [
+            {
+              nickname,
+              street,
+              number,
+              description,
+              CEP,
+              city,
+              uf,
+            },
+          ],
+        };
 
         await api.post('users', data);
         history.push('/');
@@ -118,11 +141,9 @@ const SignUpClient = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu cadastro</h1>
 
-            <Input
-              name="email"
-              icon={FiMail}
-              placeholder="E-mail"
-            />
+            <Input type="text" name="name" icon={FiUser} placeholder="Nome" />
+
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
 
             <Input
               type="password"
@@ -135,13 +156,6 @@ const SignUpClient = () => {
               name="CPF"
               icon={FiFileText}
               placeholder="CPF"
-              />
-
-            <Input
-              type="text"
-              name="name"
-              icon={FiUser}
-              placeholder="Nome"
             />
 
             <Input
@@ -151,11 +165,7 @@ const SignUpClient = () => {
               placeholder="Celular"
             />
 
-            <Input
-              name="nickname"
-              icon={FiCompass}
-              placeholder="Nickname"
-            />
+            {/* <Input name="nickname" icon={FiCompass} placeholder="Nickname" /> */}
 
             <Input
               type="number"
@@ -165,11 +175,7 @@ const SignUpClient = () => {
               onBlur={handleGetCep}
             />
 
-            <Input
-              name="street"
-              icon={FiCompass}
-              placeholder="Rua/Av."
-            />
+            {/* <Input name="street" icon={FiCompass} placeholder="Rua/Av." />
 
             <Input
               type="number"
@@ -202,7 +208,7 @@ const SignUpClient = () => {
               value={uf || ''}
               onChange={handleTest}
               disabled
-            />
+            /> */}
 
             <Button type="submit">Cadastrar</Button>
           </Form>
