@@ -70,7 +70,7 @@ export const AnimationContainer = styled.div`
     }
 
     svg {
-      margin-right: 16px;
+      margin-right: 8px;
     }
   }
 

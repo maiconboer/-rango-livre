@@ -20,11 +20,9 @@ import ShoppingCart from '../pages/ShoppingCart';
 const Routes = () => {
   return (
     <Switch>
-
       {/* ADICIONAR isPrivate nas rotas privadas
       exemplo:
       <Route path="/home-client" component={HomeClient} isPrivate /> */}
-
 
       {/* <Route path="/" exact component={SignIn} /> */}
 
@@ -34,8 +32,7 @@ const Routes = () => {
       <Route path="/signup-company" component={SignUpCompany} />
       <Route path="/type-registration" component={TypeRegistration} />
 
-      <Route path="/home-client" component={HomeClient}
-      isPrivate />
+      <Route path="/home-client" component={HomeClient} isPrivate />
 
       <Route path="/home-company" component={HomeCompany} isPrivate />
 
@@ -43,7 +40,7 @@ const Routes = () => {
 
       <Route path="/add-product" component={AddProduct} isPrivate />
 
-      <Route path="/shopping-cart" component={ShoppingCart}isPrivate />
+      <Route path="/shopping-cart" component={ShoppingCart} isPrivate />
     </Switch>
   );
 };
