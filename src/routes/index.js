@@ -12,9 +12,10 @@ import SignUpCompany from '../pages/SignUpCompany';
 import HomeClient from '../pages/HomeClient';
 import HomeCompany from '../pages/HomeCompany';
 
-import Details from '../pages/Details';
-import ShoppingCart from '../pages/ShoppingCart';
+import Products from '../pages/Products';
+import AddProduct from '../pages/AddProduct';
 
+import ShoppingCart from '../pages/ShoppingCart';
 
 const Routes = () => {
   return (
@@ -38,7 +39,9 @@ const Routes = () => {
 
       <Route path="/home-company" component={HomeCompany} /*isPrivate */ />
 
-      <Route path="/details" component={Details} /*isPrivate */ />
+      <Route path="/products" component={Products} /*isPrivate */ />
+
+      <Route path="/add-product" component={AddProduct} /*isPrivate */ />
 
       <Route path="/shopping-cart" component={ShoppingCart} /*isPrivate */ />
     </Switch>

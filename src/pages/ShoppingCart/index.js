@@ -52,7 +52,7 @@ const ShoppingCart = () => {
               </div>
           </UserData>
 
-          <Link to='details'>
+          <Link to='products'>
             <span className='backToDetail'>
               <FiChevronsLeft />
               Voltar
@@ -73,8 +73,6 @@ const ShoppingCart = () => {
           </PurchaseDetails>
 
           <CheckOut>
-
-
                 <button className='btnCheckOut'
                   onClick={handleShowModalMethodPayment}
                 >
@@ -83,7 +81,6 @@ const ShoppingCart = () => {
                   Finalizar pedido
                   </Link>
                 </button>
-
           </CheckOut>
 
           <SelectPaymentMethod>

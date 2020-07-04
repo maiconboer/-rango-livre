@@ -52,35 +52,35 @@ const HomeClient = () => {
           {/* map nos pratos, fotos, descriptions, link para demais pratos da empresa e etc */}
           <ContainerDish>
 
-            <Link to='details'>
+            <Link to='products'>
               <Dish />
             </Link>
 
-            <Link to='details'>
+            <Link to='products'>
               <Dish />
             </Link>
 
-            <Link to='details'>
+            <Link to='products'>
               <Dish />
             </Link>
 
-            <Link to='details'>
+            <Link to='products'>
               <Dish />
             </Link>
 
-            <Link to='details'>
+            <Link to='products'>
               <Dish />
             </Link>
 
-            <Link to='details'>
+            <Link to='products'>
               <Dish />
             </Link>
 
-            <Link to='details'>
+            <Link to='products'>
               <Dish />
             </Link>
 
-            <Link to='details'>
+            <Link to='products'>
               <Dish />
             </Link>
 

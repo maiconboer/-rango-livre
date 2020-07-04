@@ -8,7 +8,7 @@ import dishImg from '../../assets/dish.jpg'
 
 import SelectDish from '../../components/SelectDish'
 
-const Details = () => {
+const Products = () => {
 
   return (
     <>
@@ -57,4 +57,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default Products;
