@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form } from '@unform/web'
+// import { Form } from '@unform/web'
 
 import api from '../../services/api';
 
@@ -10,87 +10,54 @@ import { Container, Content, UserData, ContainerForm } from './styles';
 import Dropzone from '../../components/Dropzone';
 
 const AddProduct = () => {
+  const [selectedFile, setSelectedFile] = useState()
 
-  const [image, setImage] = useState()
-  const [name, setName] = useState()
-  const [category, setCategory] = useState()
-  const [description, setDescription] = useState()
-  const [actual_price, setActual_price] = useState()
-  const [regular_price, setRegular_price] = useState()
-  const [discount, setdiscount] = useState()
-  const [restaurant, setRestaurant] = useState()
-  const [city, setCity] = useState()
-  const [min_estimative, setMin_estimative] = useState()
-  const [max_estimative, setMax_estimative] = useState()
+  const [formData, setFormData] = useState({
 
-  function handleSetName(event) {
-    const nameDish = event.target.value
-    setName(nameDish)
-  }
+    name: '',
+    category: '',
+    description: '',
+    actual_price: 0,
+    regular_price: 0,
+    discount: 0,
+    restaurant: '',
+    city: '',
+    min_estimative: 0,
+    max_estimative: 0
+  })
 
-  function handleSetCategory(event) {
-    const categoryDish = event.target.value
-    setCategory(categoryDish)
-  }
+  function handleInputChange(event) {
+    const { name, value } = event.target
 
-  function handleSetDescription(event) {
-    const descriptionDish = event.target.value
-    setDescription(descriptionDish)
-  }
+    setFormData({ ...formData, [name]: value})
+}
 
-  function handleSetRegularPrice(event) {
-    const regularPrice = event.target.value
-    setRegular_price(regularPrice)
-  }
+  async function handleSubmit(event) {
+    event.preventDefault()
 
-  function handleSetActualPrice(event) {
-    const actualPrice = event.target.value
-    setActual_price(actualPrice)
-  }
+    const { name, category, actual_price, regular_price, discount, delivery_fare, description, restaurant, min_estimative, max_estimative } = formData
 
-  function handleSetDiscount(event) {
-    const discount = event.target.value
-    setdiscount(discount)
-  }
+    const data = new FormData()
+      data.append('name', name)
+      data.append('category', category)
+      data.append('actual_price', Number(actual_price))
+      data.append('regular_price', Number(regular_price))
+      data.append('discount', Number(discount))
+      data.append('delivery_fare', Number(delivery_fare))
+      data.append('description', description)
+      data.append('restaurant', restaurant)
+      data.append('min_estimative', Number(min_estimative))
+      data.append('max_estimative', Number(max_estimative))
 
-  function handleSetRestaurant(event) {
-    const restName = event.target.value
-    setRestaurant(restName)
-  }
+      if(selectedFile) {
+          data.append('image', selectedFile)
+      }
 
-  function handleSetMinEstimative(event) {
-    const minEstimative = event.target.value
-    setMin_estimative(minEstimative)
-  }
+      alert('Cadastro realizado com sucesso!')
 
-  function handleSetMaxEstimative(event) {
-    const maxEstimative = event.target.value
-    setMax_estimative(maxEstimative)
-
-  }  function handleSetCity(event) {
-    const city = event.target.value
-    setCity(city)
-  }
-
-  async function handleSubmit() {
-    const data = {
-      image,
-      name,
-
-      actual_price,
-      regular_price,
-      discount,
-      description,
-      restaurant,
-      min_estimative,
-      max_estimative,
-      city,
-    }
-
-    console.log(data);
-
-    const response = await api.post('products', data)
+      const response = await api.post('products', data)
     console.log(response);
+
   }
 
   return (
@@ -110,81 +77,88 @@ const AddProduct = () => {
           </Link>
 
         <ContainerForm>
-          <Form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
 
-            <Dropzone onFileUploaded={setImage} />
+            <Dropzone onFileUploaded={setSelectedFile} />
 
             <input
               type='text'
               name='restaurant'
               placeholder='Nome do Restaurante'
-              onChange={handleSetRestaurant}
+              onChange={handleInputChange}
             />
 
             <input
               type='text'
               name='name'
               placeholder='Nome do prato'
-              onChange={handleSetName}
+              onChange={handleInputChange}
             />
 
             <input
               type='text'
-              name='name'
+              name='category'
               placeholder='Categoria'
-              onChange={handleSetCategory}
+              onChange={handleInputChange}
             />
 
             <input
               type='text'
               name='description'
               placeholder='Descrição'
-              onChange={handleSetDescription}
+              onChange={handleInputChange}
             />
 
             <input
               type='number'
               name='regular_price'
               placeholder='Preço sem desconto'
-              onChange={handleSetRegularPrice}
+              onChange={handleInputChange}
             />
 
             <input
               type='number'
               name='actual_price'
               placeholder='Preço atual'
-              onChange={handleSetActualPrice}
+              onChange={handleInputChange}
             />
 
             <input
               type='number'
               name='discount'
               placeholder='Desconto em R$'
-              onChange={handleSetDiscount}
+              onChange={handleInputChange}
+            />
+
+            <input
+              type='number'
+              name='delivery_fare'
+              placeholder='Taxa de entrega'
+              onChange={handleInputChange}
             />
 
             <input
               type='number'
               name='min_estimative'
               placeholder='Estimativa mínima'
-              onChange={handleSetMinEstimative}
+              onChange={handleInputChange}
             />
             <input
               type='number'
               name='max_estimative'
               placeholder='Estimativa máxima'
-              onChange={handleSetMaxEstimative}
+              onChange={handleInputChange}
             />
 
             <input
               type='text'
               name='city'
               placeholder='Cidade'
-              onChange={handleSetCity}
+              onChange={handleInputChange}
             />
             <button type="submit">Salvar prato</button>
 
-            </Form>
+            </form>
           </ContainerForm>
         </Content>
       </Container>
