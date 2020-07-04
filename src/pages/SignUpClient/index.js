@@ -146,12 +146,6 @@ const SignUpClient = () => {
             <Input name="email" icon={FiMail} placeholder="E-mail" />
 
             <Input
-              type="password"
-              name="password"
-              icon={FiLock}
-              placeholder="Senha"
-            />
-            <Input
               type="number"
               name="CPF"
               icon={FiFileText}
@@ -173,6 +167,13 @@ const SignUpClient = () => {
               icon={FiCompass}
               placeholder="CEP"
               onBlur={handleGetCep}
+            />
+
+            <Input
+              type="password"
+              name="password"
+              icon={FiLock}
+              placeholder="Senha"
             />
 
             {/* <Input name="street" icon={FiCompass} placeholder="Rua/Av." />
