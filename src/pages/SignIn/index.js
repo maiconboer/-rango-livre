@@ -44,16 +44,25 @@ const SignIn = () => {
           password: data.password,
         });
 
-        // aplicar uma regra aqui, se for usuário, redireciona para rota dashboard-user, se for empresa dashboard-company
+        const token = localStorage.getItem('@RangoLivre:token');
+        const user = localStorage.getItem('@RangoLivre:user');
 
-        history.push('/dashboard-user');
+        if(!token || !user) {
+          addToast({
+            type: 'error',
+            title: 'Erro na autenticação',
+            description: 'Ocorreu um erro ao fazer login, cheque as credenciais',
+          });
+        } else {
+          history.push('/home-client');
+        }
+
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
 
           formRef.current.setErrors(errors);
         }
-
         addToast({
           type: 'error',
           title: 'Erro na autenticação',
@@ -68,7 +77,7 @@ const SignIn = () => {
     <Container>
       <Content>
         <AnimationContainer>
-          <img src={logoImg} alt="GoBarber" />
+          <img src={logoImg} alt="Rngo Livre" />
 
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu logon</h1>

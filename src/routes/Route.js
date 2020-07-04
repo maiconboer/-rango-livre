@@ -23,7 +23,7 @@ const Route= ({
         ) : (
           <Redirect
             to={{
-              pathname: isPrivate ? '/' : '/dashboard-user',
+              pathname: isPrivate ? '/' : '/home-client',
               state: { from: location },
             }}
           />

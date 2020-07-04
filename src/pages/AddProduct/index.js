@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from '@unform/web'
 
-import api from '../../services/api';
+// import api from '../../services/api';
 
 import { Link } from 'react-router-dom';
 import { FiChevronsLeft } from 'react-icons/fi';
@@ -15,9 +15,11 @@ const AddProduct = () => {
   const [description, setDescription] = useState()
   const [actual_price, setActual_price] = useState()
   const [image_url, setImage_url] = useState()
-  const [category, setCategory] = useState()
-  const [restaurantName, setRestaurantName] = useState()
+  // const [category, setCategory] = useState()
+  const [restaurant, setRestaurant] = useState()
   const [city, setCity] = useState()
+  const [min_estimative, setMin_estimative] = useState()
+  const [max_estimative, setMax_estimative] = useState()
 
   function handleSetName(event) {
     const nameDish = event.target.value
@@ -34,36 +36,52 @@ const AddProduct = () => {
     setActual_price(priceDish)
   }
 
-  function handleSetCategory(event) {
-    const priceDish = event.target.value
-    setCategory(priceDish)
-  }
+  // function handleSetCategory(event) {
+  //   const priceDish = event.target.value
+  //   setCategory(priceDish)
+  // }
 
   function handleSetRestaurant(event) {
     const restName = event.target.value
-    setRestaurantName(restName)
+    setRestaurant(restName)
   }
 
-  function handleSetCity(event) {
+  function handleSetMinEstimative(event) {
+    const minEstimative = event.target.value
+    setMin_estimative(minEstimative)
+
+  }
+
+  function handleSetMaxEstimative(event) {
+    const maxEstimative = event.target.value
+    setMax_estimative(maxEstimative)
+
+  }  function handleSetCity(event) {
     const city = event.target.value
     setCity(city)
   }
 
   async function handleSubmit() {
     const data = {
-      name,
-      description,
-      actual_price,
       image_url,
-      category,
-      restaurantName,
-      city
+      name,
+      actual_price,
+      regular_price: 0,
+      discount: 0,
+      description,
+      restaurant,
+      min_estimative,
+      max_estimative,
+      city,
+      average_rating: '',
+      total_ratings: 0
     }
 
-    const response = await api.post('products', data)
+    // const reader = new FileReader();
+    // reader.readAsDataURL(data.image_url);
 
-    console.log(response);
-
+    // const response = await api.post('products', data)
+    // console.log(response);
     // console.log(data);
   }
 
@@ -85,6 +103,7 @@ const AddProduct = () => {
 
         <ContainerForm>
           <Form onSubmit={handleSubmit}>
+
             <Dropzone onFileUploaded={setImage_url} />
 
             <input
@@ -115,11 +134,24 @@ const AddProduct = () => {
               onChange={handleSetPrice}
             />
 
-            <input
+            {/* <input
               type='text'
               name='category'
               placeholder='Categoria'
               onChange={handleSetCategory}
+            /> */}
+
+            <input
+              type='text'
+              name='min_estimative'
+              placeholder='Estimativa mínima'
+              onChange={handleSetMinEstimative}
+            />
+            <input
+              type='text'
+              name='max_estimative'
+              placeholder='Estimativa máxima'
+              onChange={handleSetMaxEstimative}
             />
 
             <input
@@ -128,7 +160,6 @@ const AddProduct = () => {
               placeholder='Cidade'
               onChange={handleSetCity}
             />
-
             <button type="submit">Salvar prato</button>
 
             </Form>

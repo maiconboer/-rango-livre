@@ -8,12 +8,15 @@ import Dish from '../../components/CardDish'
 
 const HomeClient = () => {
 
+  const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
+
+
   return (
     <>
       <Container>
         <Content>
           <UserData>
-            <h2>Bem vindo(a), Usuário</h2>
+            <h2>Bem vindo(a), {user.name}</h2>
               <Cash>
                 <div>
                   <FiCreditCard size={20}/>

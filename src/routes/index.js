@@ -35,15 +35,15 @@ const Routes = () => {
       <Route path="/type-registration" component={TypeRegistration} />
 
       <Route path="/home-client" component={HomeClient}
-      /*isPrivate */ />
+      isPrivate />
 
-      <Route path="/home-company" component={HomeCompany} /*isPrivate */ />
+      <Route path="/home-company" component={HomeCompany} isPrivate />
 
-      <Route path="/products" component={Products} /*isPrivate */ />
+      <Route path="/products" component={Products} isPrivate />
 
-      <Route path="/add-product" component={AddProduct} /*isPrivate */ />
+      <Route path="/add-product" component={AddProduct} isPrivate />
 
-      <Route path="/shopping-cart" component={ShoppingCart} /*isPrivate */ />
+      <Route path="/shopping-cart" component={ShoppingCart}isPrivate />
     </Switch>
   );
 };

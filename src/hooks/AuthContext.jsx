@@ -5,8 +5,8 @@ const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [data, setData] = useState(() => {
-    const token = localStorage.getItem('@GoBarber:token');
-    const user = localStorage.getItem('@GoBarber:user');
+    const token = localStorage.getItem('@RangoLivre:token');
+    const user = localStorage.getItem('@RangoLivre:user');
 
     if (token && user) {
       return { token, user: JSON.parse(user) };
@@ -23,15 +23,17 @@ export const AuthProvider = ({ children }) => {
 
     const { token, user } = response.data;
 
-    localStorage.setItem('@GoBarber:token', token);
-    localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+    if(token) {
+      localStorage.setItem('@RangoLivre:token', token);
+      localStorage.setItem('@RangoLivre:user', JSON.stringify(user));
 
-    setData({ token, user });
+      setData({ token, user });
+    }
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@GoBarber:token');
-    localStorage.removeItem('@GoBarber:user');
+    localStorage.removeItem('@RangoLivre:token');
+    localStorage.removeItem('@RangoLivre:user');
 
     setData({});
   }, []);
