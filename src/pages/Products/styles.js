@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   max-width: 360px;
@@ -31,8 +31,7 @@ export const Content = styled.div`
   .about-place {
     color: var(--color3);
     margin: 4px 16px 16px 16px;
-
-    }
+  }
 `;
 
 export const ImageDish = styled.div`
@@ -68,6 +67,7 @@ export const ContainerDish = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+  padding: 0 16px;
 
   a {
     text-decoration: none;

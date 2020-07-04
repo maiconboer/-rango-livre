@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   max-width: 360px;
@@ -8,7 +8,6 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-
   .backToDetail {
     margin: 16px;
     color: var(--color1);
@@ -20,8 +19,8 @@ export const Content = styled.div`
   }
 
   a {
-      text-decoration: none;
-    }
+    text-decoration: none;
+  }
 `;
 
 export const UserData = styled.div`
@@ -51,7 +50,7 @@ export const Cash = styled.div`
   }
 
   svg {
-    margin-right: 4px;
+    margin-right: 8px;
   }
 `;
 
@@ -61,6 +60,7 @@ export const ContainerDish = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
+  padding: 0 16px;
 
   a {
     text-decoration: none;
@@ -87,6 +87,7 @@ export const ShoppingCartIcon = styled.div`
 export const PurchaseDetails = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 16px;
 
   span {
     display: flex;
@@ -134,7 +135,6 @@ export const CheckOut = styled.div`
 `;
 
 export const SelectPaymentMethod = styled.div`
-
   .paymentMethod {
     display: none;
     background-color: var(--color5);
@@ -143,7 +143,6 @@ export const SelectPaymentMethod = styled.div`
     top: 200px;
     width: 360px;
   }
-
 
   .active {
     display: flex;
@@ -167,7 +166,7 @@ export const SelectPaymentMethod = styled.div`
 
     svg {
       color: var(--color3);
-      margin-right: 8px
+      margin-right: 8px;
     }
 
     input {
@@ -193,17 +192,16 @@ export const SelectPaymentMethod = styled.div`
     }
 
     .btn-confirm {
-      background-color: #6BD589;
+      background-color: #6bd589;
     }
 
     .btn-cancel {
-      background-color: #EB745A;
+      background-color: #eb745a;
     }
   }
 `;
 
 export const PaymentSuccess = styled.div`
-
   text-align: right;
   .paymentSuccess {
     display: none;
@@ -219,7 +217,6 @@ export const PaymentSuccess = styled.div`
     flex-direction: column;
     padding: 16px;
 
-
     h2 {
       color: var(--color1);
       margin-bottom: 16px;
@@ -230,15 +227,15 @@ export const PaymentSuccess = styled.div`
       align-items: center;
     }
 
-   a {
-    text-align: right;
-    margin: -8px 44px 0 0;
-    color: var(--color3);
-   }
+    a {
+      text-align: right;
+      margin: -8px 44px 0 0;
+      color: var(--color3);
+    }
 
     svg {
       color: var(--color1);
-      margin-right: 8px
+      margin-right: 8px;
     }
   }
 `;

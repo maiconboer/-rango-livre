@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   max-width: 800px;
@@ -8,7 +8,6 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-
   span {
     color: var(--color1);
   }
@@ -45,15 +44,17 @@ export const UserData = styled.div`
 `;
 
 export const ContainerForm = styled.div`
-
   form {
+    width: 320px;
+    margin: 0 auto 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    input, button {
-      width: 280px;
+    input,
+    button {
+      width: 100%;
     }
 
     input {
@@ -73,5 +74,4 @@ export const ContainerForm = styled.div`
       border-radius: 4px;
     }
   }
-
 `;

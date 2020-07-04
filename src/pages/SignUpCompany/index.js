@@ -1,5 +1,11 @@
 import React, { useCallback, useRef } from 'react';
-import { FiArrowLeft, FiFileText, FiMail, FiUser, FiLock } from 'react-icons/fi';
+import {
+  FiArrowLeft,
+  FiFileText,
+  FiMail,
+  FiUser,
+  FiLock,
+} from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { Link, useHistory } from 'react-router-dom';
@@ -22,7 +28,7 @@ const SignUp = () => {
   const history = useHistory();
 
   const handleSubmit = useCallback(
-    async (data) => {
+    async data => {
       try {
         formRef.current.setErrors({});
 
@@ -74,8 +80,9 @@ const SignUp = () => {
             <h1>Faça seu cadastro</h1>
 
             <Input name="name" icon={FiUser} placeholder="Nome" />
-            <Input name="cnpj" icon={FiFileText} placeholder="CNPJ" />
             <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input name="cnpj" icon={FiFileText} placeholder="CNPJ" />
+
             <Input
               name="password"
               icon={FiLock}

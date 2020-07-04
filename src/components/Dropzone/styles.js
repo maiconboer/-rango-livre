@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const DropzoneContainer = styled.div`
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .dropzone {
-    width: 280px;
+    width: 320px;
     height: 120px;
     background: var(--color5);
     border-radius: 10px;
@@ -17,7 +16,7 @@ export const DropzoneContainer = styled.div`
     align-items: center;
     margin-top: 16px;
     outline: 0;
-    }
+  }
 
   .dropzone img {
     width: 100%;
