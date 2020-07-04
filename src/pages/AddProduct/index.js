@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Form } from '@unform/web'
 
+import api from '../../services/api';
+
 import { Link } from 'react-router-dom';
 import { FiChevronsLeft } from 'react-icons/fi';
 import { Container, Content, UserData, ContainerForm } from './styles';
@@ -11,8 +13,11 @@ const AddProduct = () => {
 
   const [name, setName] = useState()
   const [description, setDescription] = useState()
-  const [price, setPrice] = useState()
-  const [selectedFile, setSelectedFile] = useState()
+  const [actual_price, setActual_price] = useState()
+  const [image_url, setImage_url] = useState()
+  const [category, setCategory] = useState()
+  const [restaurantName, setRestaurantName] = useState()
+  const [city, setCity] = useState()
 
   function handleSetName(event) {
     const nameDish = event.target.value
@@ -26,18 +31,40 @@ const AddProduct = () => {
 
   function handleSetPrice(event) {
     const priceDish = event.target.value
-    setPrice(priceDish)
+    setActual_price(priceDish)
   }
 
-  function handleSubmit() {
+  function handleSetCategory(event) {
+    const priceDish = event.target.value
+    setCategory(priceDish)
+  }
+
+  function handleSetRestaurant(event) {
+    const restName = event.target.value
+    setRestaurantName(restName)
+  }
+
+  function handleSetCity(event) {
+    const city = event.target.value
+    setCity(city)
+  }
+
+  async function handleSubmit() {
     const data = {
       name,
       description,
-      price,
-      selectedFile
+      actual_price,
+      image_url,
+      category,
+      restaurantName,
+      city
     }
 
-    console.log(data);
+    const response = await api.post('products', data)
+
+    console.log(response);
+
+    // console.log(data);
   }
 
   return (
@@ -58,28 +85,48 @@ const AddProduct = () => {
 
         <ContainerForm>
           <Form onSubmit={handleSubmit}>
-            <Dropzone onFileUploaded={setSelectedFile} />
+            <Dropzone onFileUploaded={setImage_url} />
+
+            <input
+              type='text'
+              name='restaurant'
+              placeholder='Nome do Restaurante'
+              onChange={handleSetRestaurant}
+            />
 
             <input
               type='text'
               name='name'
-              placeholder='Informe o nome'
-              value={name}
+              placeholder='Nome do prato'
               onChange={handleSetName}
             />
 
             <input
               type='text'
               name='description'
-              placeholder='Informa uma descrição'
+              placeholder='Descrição'
               onChange={handleSetDescription}
             />
 
             <input
               type='text'
               name='price'
-              placeholder='Informe o preço'
+              placeholder='Preço'
               onChange={handleSetPrice}
+            />
+
+            <input
+              type='text'
+              name='category'
+              placeholder='Categoria'
+              onChange={handleSetCategory}
+            />
+
+            <input
+              type='text'
+              name='city'
+              placeholder='Cidade'
+              onChange={handleSetCity}
             />
 
             <button type="submit">Salvar prato</button>
