@@ -46,7 +46,6 @@ export const AnimationContainer = styled.div`
     a {
       color: #f4ede8;
       display: block;
-      margin-top: 24px;
       text-decoration: none;
       transition: all 0.2s;
 
@@ -60,7 +59,6 @@ export const AnimationContainer = styled.div`
   > a {
     color: #ff9000;
     display: block;
-    margin-top: 24px;
     text-decoration: none;
     transition: all 0.2s;
 
