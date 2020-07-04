@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Container = styled.div`
   max-width: 360px;
@@ -30,40 +30,42 @@ export const UserData = styled.div`
   padding: 20px;
 
   h2 {
-    text-align: center;
+    /* text-align: center; */
     margin-bottom: 20px;
   }
 
   .total {
     margin-top: 16px;
-    text-align: center;
     font-size: 16px;
     font-weight: bold;
   }
 
   .historic-transfer {
     display: flex;
-    text-align: center;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     a {
       display: flex;
+      font-weight: 700;
       text-decoration: none;
       color: var(--color5);
-      margin-top: 16px
+      margin-top: 16px;
+
+      :last-child {
+        margin-top: 8px;
+      }
     }
   }
 `;
 
 export const Cash = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  max-width: 400px;
-  margin: 8px auto;
-
+  width: 88%;
+  margin: 8px 0;
 
   div {
     display: flex;
@@ -71,7 +73,7 @@ export const Cash = styled.div`
   }
 
   svg {
-    margin-right: 4px;
+    margin-right: 8px;
   }
 `;
 
@@ -80,22 +82,25 @@ export const ContainerDish = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 0 10px;
+  gap: 16px;
+  column-gap: 10px;
+  padding: 0 10px 84px 10px;
 
   a {
     text-decoration: none;
     cursor: pointer;
   }
-
 `;
 
 export const ShoppingCartIcon = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: calc(50% - 30px);
   width: 60px;
   height: 60px;
   background-color: var(--color1);
   border-radius: 50%;
-  margin: 26px auto;
+  margin-bottom: 8px;
 
   display: flex;
   justify-content: center;
