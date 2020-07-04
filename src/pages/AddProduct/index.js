@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from '@unform/web'
 
-// import api from '../../services/api';
+import api from '../../services/api';
 
 import { Link } from 'react-router-dom';
 import { FiChevronsLeft } from 'react-icons/fi';
@@ -11,11 +11,13 @@ import Dropzone from '../../components/Dropzone';
 
 const AddProduct = () => {
 
+  const [image, setImage] = useState()
   const [name, setName] = useState()
+  const [category, setCategory] = useState()
   const [description, setDescription] = useState()
   const [actual_price, setActual_price] = useState()
-  const [image_url, setImage_url] = useState()
-  // const [category, setCategory] = useState()
+  const [regular_price, setRegular_price] = useState()
+  const [discount, setdiscount] = useState()
   const [restaurant, setRestaurant] = useState()
   const [city, setCity] = useState()
   const [min_estimative, setMin_estimative] = useState()
@@ -26,20 +28,30 @@ const AddProduct = () => {
     setName(nameDish)
   }
 
+  function handleSetCategory(event) {
+    const categoryDish = event.target.value
+    setCategory(categoryDish)
+  }
+
   function handleSetDescription(event) {
     const descriptionDish = event.target.value
     setDescription(descriptionDish)
   }
 
-  function handleSetPrice(event) {
-    const priceDish = event.target.value
-    setActual_price(priceDish)
+  function handleSetRegularPrice(event) {
+    const regularPrice = event.target.value
+    setRegular_price(regularPrice)
   }
 
-  // function handleSetCategory(event) {
-  //   const priceDish = event.target.value
-  //   setCategory(priceDish)
-  // }
+  function handleSetActualPrice(event) {
+    const actualPrice = event.target.value
+    setActual_price(actualPrice)
+  }
+
+  function handleSetDiscount(event) {
+    const discount = event.target.value
+    setdiscount(discount)
+  }
 
   function handleSetRestaurant(event) {
     const restName = event.target.value
@@ -49,7 +61,6 @@ const AddProduct = () => {
   function handleSetMinEstimative(event) {
     const minEstimative = event.target.value
     setMin_estimative(minEstimative)
-
   }
 
   function handleSetMaxEstimative(event) {
@@ -63,26 +74,23 @@ const AddProduct = () => {
 
   async function handleSubmit() {
     const data = {
-      image_url,
+      image,
       name,
+
       actual_price,
-      regular_price: 0,
-      discount: 0,
+      regular_price,
+      discount,
       description,
       restaurant,
       min_estimative,
       max_estimative,
       city,
-      average_rating: '',
-      total_ratings: 0
     }
 
-    // const reader = new FileReader();
-    // reader.readAsDataURL(data.image_url);
+    console.log(data);
 
-    // const response = await api.post('products', data)
-    // console.log(response);
-    // console.log(data);
+    const response = await api.post('products', data)
+    console.log(response);
   }
 
   return (
@@ -104,7 +112,7 @@ const AddProduct = () => {
         <ContainerForm>
           <Form onSubmit={handleSubmit}>
 
-            <Dropzone onFileUploaded={setImage_url} />
+            <Dropzone onFileUploaded={setImage} />
 
             <input
               type='text'
@@ -122,33 +130,47 @@ const AddProduct = () => {
 
             <input
               type='text'
+              name='name'
+              placeholder='Categoria'
+              onChange={handleSetCategory}
+            />
+
+            <input
+              type='text'
               name='description'
               placeholder='Descrição'
               onChange={handleSetDescription}
             />
 
             <input
-              type='text'
-              name='price'
-              placeholder='Preço'
-              onChange={handleSetPrice}
+              type='number'
+              name='regular_price'
+              placeholder='Preço sem desconto'
+              onChange={handleSetRegularPrice}
             />
 
-            {/* <input
-              type='text'
-              name='category'
-              placeholder='Categoria'
-              onChange={handleSetCategory}
-            /> */}
+            <input
+              type='number'
+              name='actual_price'
+              placeholder='Preço atual'
+              onChange={handleSetActualPrice}
+            />
 
             <input
-              type='text'
+              type='number'
+              name='discount'
+              placeholder='Desconto em R$'
+              onChange={handleSetDiscount}
+            />
+
+            <input
+              type='number'
               name='min_estimative'
               placeholder='Estimativa mínima'
               onChange={handleSetMinEstimative}
             />
             <input
-              type='text'
+              type='number'
               name='max_estimative'
               placeholder='Estimativa máxima'
               onChange={handleSetMaxEstimative}
