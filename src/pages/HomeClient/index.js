@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsRight, FiShoppingCart } from 'react-icons/fi'
+
+import api from '../../services/api'
 
 import formatMoney from '../../utils/formatMoney'
 
@@ -15,6 +17,20 @@ const HomeClient = () => {
   let meal = user.meal_allowance_balance;
   let regular = user.regular_balance;
   let total = regular + meal;
+  let city = user.addresses[0].city;
+
+
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    async function getProducts() {
+      const response = await api.get(`products?city=${city}&offset=0&limit=10`)
+
+      setProducts([...products, response.data.products ])
+    }
+
+    getProducts();
+  }, [])
 
   return (
     <>
@@ -60,39 +76,14 @@ const HomeClient = () => {
           {/* map nos pratos, fotos, descriptions, link para demais pratos da empresa e etc */}
           <ContainerDish>
 
-            <Link to='products'>
-              <Dish />
-            </Link>
+
+
 
             <Link to='products'>
-              <Dish />
+              <Dish products={products} />
             </Link>
 
-            <Link to='products'>
-              <Dish />
-            </Link>
-
-            <Link to='products'>
-              <Dish />
-            </Link>
-
-            <Link to='products'>
-              <Dish />
-            </Link>
-
-            <Link to='products'>
-              <Dish />
-            </Link>
-
-            <Link to='products'>
-              <Dish />
-            </Link>
-
-            <Link to='products'>
-              <Dish />
-            </Link>
-
-
+          {/* {console.log(products)} */}
           </ContainerDish>
 
           <ShoppingCartIcon>
