@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsRight, FiShoppingCart } from 'react-icons/fi'
 
+import formatMoney from '../../utils/formatMoney'
+
 import { Container, Content, UserData, Cash, ContainerDish, ShoppingCartIcon } from './styles';
 
 import Dish from '../../components/CardDish'
@@ -10,6 +12,9 @@ const HomeClient = () => {
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
 
+  let meal = user.meal_allowance_balance;
+  let regular = user.regular_balance;
+  let total = regular + meal;
 
   return (
     <>
@@ -22,7 +27,7 @@ const HomeClient = () => {
                   <FiCreditCard size={20}/>
                   <span>Mercado Vale</span>
                 </div>
-                <span>R$ 150,00</span>
+                <span>{formatMoney(meal)}</span>
               </Cash>
 
               <Cash>
@@ -30,12 +35,12 @@ const HomeClient = () => {
                   <FiDollarSign size={20} />
                   <span>Mercado Pago</span>
                 </div>
-                <span>R$ 150,00</span>
+                <span>{formatMoney(regular)}</span>
 
               </Cash>
 
               <div className='total'>
-                <p>Saldo total R$ 300,00</p>
+                <p>Saldo total {formatMoney(total)}</p>
               </div>
 
               <div className='historic-transfer'>

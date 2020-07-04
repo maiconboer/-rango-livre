@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { FiArrowLeft, FiFileText, FiMail, FiUser, FiLock, FiSmartphone, FiCompass } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -25,11 +25,25 @@ const SignUpClient = () => {
   const [city, setCity] = useState()
   const [uf, setUf] = useState()
 
+  async function handleGetCep(event) {
+      let inputCep = event.target.value
+
+      if(inputCep) {
+        const response = await getInformationsCity(inputCep)
+        setCity(response.localidade)
+        setUf(response.uf)
+      }
+  }
+
+  function handleTest(event) {
+    setCity(city)
+    setUf(uf)
+}
+
   const handleSubmit = useCallback(
     async (data) => {
       try {
         formRef.current.setErrors({});
-
 
         const schema = Yup.object().shape({
           email: Yup.string()
@@ -39,17 +53,13 @@ const SignUpClient = () => {
           CPF: Yup.string().required('CPF obrigatório'),
           name: Yup.string().required('Nome obrigatório'),
           phone_number: Yup.string().required('Celular obrigatório'),
-
-          addresses: Yup.array().of(Yup.object().shape({
-            nickname: Yup.string(),
-            street: Yup.string().required('Rua obrigatória'),
-            number: Yup.string().required('Nº obrigatório'),
-            description: Yup.string(),
-            CEP: Yup.string().required('CEP obrigatório'),
-            city: Yup.string().required('Cidade obrigatória'),
-            uf: Yup.string().required('Estado obrigatório'),
-          }))
-
+          nickname: Yup.string(),
+          street: Yup.string().required('Rua obrigatória'),
+          number: Yup.string().required('Nº obrigatório'),
+          description: Yup.string(),
+          CEP: Yup.string().required('CEP obrigatório'),
+          city: Yup.string().required('Cidade obrigatória'),
+          uf: Yup.string().required('Estado obrigatório'),
         });
 
         await schema.validate(data, {
@@ -75,10 +85,8 @@ const SignUpClient = () => {
           }]
         }
 
-        await api.post('/users', data);
+        await api.post('users', data);
         history.push('/');
-
-        console.log(data);
 
         addToast({
           type: 'success',
@@ -88,7 +96,6 @@ const SignUpClient = () => {
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
           const errors = getValidationErrors(error);
-
           formRef.current.setErrors(errors);
         }
 
@@ -101,8 +108,6 @@ const SignUpClient = () => {
     },
     [addToast, history],
   );
-
-  console.log();
 
   return (
     <Container>
@@ -157,6 +162,7 @@ const SignUpClient = () => {
               name="CEP"
               icon={FiCompass}
               placeholder="CEP"
+              onBlur={handleGetCep}
             />
 
             <Input
@@ -183,6 +189,9 @@ const SignUpClient = () => {
               name="city"
               icon={FiCompass}
               placeholder="Cidade"
+              value={city || ''}
+              onChange={handleTest}
+              disabled
             />
 
             <Input
@@ -190,6 +199,9 @@ const SignUpClient = () => {
               name="uf"
               icon={FiCompass}
               placeholder="Estado"
+              value={uf || ''}
+              onChange={handleTest}
+              disabled
             />
 
             <Button type="submit">Cadastrar</Button>
