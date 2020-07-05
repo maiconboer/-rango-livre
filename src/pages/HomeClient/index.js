@@ -26,8 +26,12 @@ const HomeClient = () => {
     async function getProducts() {
       const response = await api.get(`products?city=${city}&offset=0&limit=10`)
 
+      console.log(response);
+
+
       setProducts([...products, response.data.products ])
     }
+
 
     getProducts();
   }, [])
@@ -75,13 +79,16 @@ const HomeClient = () => {
 
           <ContainerDish>
 
+          {console.log(products[0])};
+
             {products[0] ? products[0].map(product => (
               <Link key={product.uuid} to={`products/${product.uuid}`}>
                 <Dish products={product} />
 
+
               </Link>
             ))
-            : ''}
+            : ' '}
 
           </ContainerDish>
 

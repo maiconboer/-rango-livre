@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import { Form } from '@unform/web'
 
 import api from '../../services/api';
+import getInformationsCity from '../../services/apiCep';
 
 import { Link, useHistory } from 'react-router-dom';
 import { FiChevronsLeft } from 'react-icons/fi';
@@ -11,7 +12,7 @@ import Dropzone from '../../components/Dropzone';
 
 const AddProduct = () => {
   const history = useHistory();
-
+  const [city, setCity] = useState();
   const [selectedFile, setSelectedFile] = useState();
   const [formData, setFormData] = useState({
     name: '',
@@ -30,6 +31,16 @@ const AddProduct = () => {
     const { name, value } = event.target;
 
     setFormData({ ...formData, [name]: value });
+  }
+
+  async function handleGetCep(event) {
+    let inputCep = event.target.value;
+
+    if (inputCep) {
+      const response = await getInformationsCity(inputCep);
+      setCity(response.localidade);
+
+    }
   }
 
   async function handleSubmit(event) {
@@ -167,8 +178,17 @@ const AddProduct = () => {
 
               <input
                 type="text"
+                name="CEP"
+                placeholder="CEP"
+                onBlur={handleGetCep}
+              />
+
+              <input
+                type="text"
                 name="city"
                 placeholder="Cidade"
+                disabled
+                value={city}
                 onChange={handleInputChange}
               />
               <button type="submit">Salvar prato</button>

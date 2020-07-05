@@ -6,8 +6,6 @@ import api from '../../services/api'
 
 import { Container, Content, ImageDish, ContainerDish, PlaceOrder } from './styles';
 
-import dishImg from '../../assets/dish.jpg'
-
 import SelectDish from '../../components/SelectDish'
 
 const Products = (props) => {

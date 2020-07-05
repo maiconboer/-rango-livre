@@ -40,13 +40,19 @@ const Deposits = () => {
     let value = Number(input.value)
 
     console.log(token);
+    console.log(value);
 
-    let response = await api.post('deposits', value, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-  }
+  //   let response = await api.post('deposits', value, {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //         Authorization: `Bearer ${token}`
+  //     }
+  //   })
+  // }
+
+  let response = await api.post('deposits', value)
+
+}
 
   return (
     <>

@@ -45,6 +45,7 @@ const Routes = () => {
       <Route path="/shopping-cart" component={ShoppingCart} isPrivate />
 
       <Route path="/deposits" component={Deposits} isPrivate />
+
     </Switch>
   );
 };
