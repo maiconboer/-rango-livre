@@ -162,14 +162,14 @@ const SignUpClient = () => {
             />
 
             <Input
-              type="number"
+              type="text"
               name="CPF"
               icon={FiFileText}
               placeholder="CPF"
             />
 
             <Input
-              type="number"
+              type="text"
               name="phone_number"
               icon={FiSmartphone}
               placeholder="Celular"
@@ -178,7 +178,7 @@ const SignUpClient = () => {
             {/* <Input name="nickname" icon={FiCompass} placeholder="Nickname" /> */}
 
             <Input
-              type="number"
+              type="text"
               name="CEP"
               icon={FiCompass}
               placeholder="CEP"

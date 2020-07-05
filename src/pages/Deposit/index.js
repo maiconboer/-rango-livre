@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 
 import {FiCreditCard, FiDollarSign, FiChevronsRight, FiChevronsLeft } from 'react-icons/fi'
@@ -14,7 +14,11 @@ import { Container, Content, UserData, Cash, ContainerForm } from './styles';
 
 const Deposit = () => {
 
+  let [valueDeposit, setValueDeposit] = useState()
+
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
+
+  const token = localStorage.getItem('@RangoLivre:token');
 
   let meal = user.meal_allowance_balance;
   let regular = user.regular_balance;
@@ -22,13 +26,26 @@ const Deposit = () => {
   let city = user.addresses[0].city;
 
 
+  function handleChangeInput(event) {
+    const { value, maxLength } = event.target;
+    const size = value.slice(0, maxLength);
+
+    setValueDeposit(size)
+  }
+
   async function handleSubmitDeposit(event) {
     event.preventDefault()
 
-    let response = await api.post('deposit')
+    const input = document.querySelector('input')
+    let value = Number(input.value)
 
-    console.log(response);
+    console.log(token);
 
+    let response = await api.post('deposits', value, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
   }
 
   return (
@@ -85,6 +102,9 @@ const Deposit = () => {
               type='number'
               name='amount'
               placeholder='Valor ex: 300'
+              maxLength='3'
+              value={valueDeposit}
+              onChange={handleChangeInput}
             />
 
             <Button type="submit">Depositar</Button>
