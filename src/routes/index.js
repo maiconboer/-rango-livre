@@ -17,6 +17,8 @@ import AddProduct from '../pages/AddProduct';
 
 import ShoppingCart from '../pages/ShoppingCart';
 
+import Deposit from '../pages/Deposit';
+
 const Routes = () => {
   return (
     <Switch>
@@ -41,6 +43,8 @@ const Routes = () => {
       <Route path="/add-product" component={AddProduct} isPrivate />
 
       <Route path="/shopping-cart" component={ShoppingCart} isPrivate />
+
+      <Route path="/deposit" component={Deposit} isPrivate />
     </Switch>
   );
 };

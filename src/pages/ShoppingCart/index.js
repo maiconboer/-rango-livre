@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsLeft, FiTruck, FiClock, FiCheck, FiCheckCircle } from 'react-icons/fi'
 
 import formatMoney from '../../utils/formatMoney'
 
+import api from '../../services/api'
+
 import { Container, Content, UserData, Cash, ContainerDish, PurchaseDetails, CheckOut, SelectPaymentMethod, PaymentSuccess } from './styles';
 
 import SelectDish from '../../components/SelectDish'
 
-
 const ShoppingCart = (props) => {
+
+  const [products, setProducts] = useState([])
+  const [showProducts, setShowProducts] = useState([])
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
 
@@ -17,6 +21,44 @@ const ShoppingCart = (props) => {
   let regular = user.regular_balance;
   let total = regular + meal;
 
+
+  useEffect(() => {
+    async function getProducts() {
+
+      let arrayPurchase = [];
+      let id = []
+
+      let purchaseLocalStorage = localStorage.getItem('@RangoLivre:purchase');
+
+      let purchase = JSON.parse(purchaseLocalStorage)
+      arrayPurchase.push(purchase)
+
+
+      // VERIFICAR CODIGO PARA LISTAR TODOS OS PRATOS SELECIONADOS E NÃO APENAS 1
+
+      if(purchase && purchase !== null ) {
+        for (let i = 0; i < purchase.length; i++) {
+
+          Promise.all([
+            api.get(`products/${purchase[i].id}`),
+
+          ]).then(data => {
+            let qtd = arrayPurchase[0][i].qtdProducts
+
+            data[0].data.product = {
+              ...data[0].data.product,
+              qtd
+            }
+            setProducts([...products, data[0].data.product])
+            setShowProducts(products)
+          });
+      }
+    }
+  }
+
+
+    getProducts();
+  }, [])
 
   // criar a lógica paa verificar se o cliente possui saldo (mercado pago ou mercado vale) para finalizar o pedido, se a compra for efetuada com sucesso, remover o modal de escolher forma de pagamento e renderizar o modal de finalização do pedido, caso não houver saldo, renderizar modal sobre erro no pedido e etc
 
@@ -37,6 +79,7 @@ const ShoppingCart = (props) => {
 
   return (
     <>
+    {console.log(products)}
       <Container>
         <Content>
           <UserData>
@@ -70,12 +113,16 @@ const ShoppingCart = (props) => {
           </Link>
 
           <ContainerDish>
-            {/* <SelectDish product={product} shoppingCart={true}/> */}
-            {/* <SelectDish shoppingCart={true}/>
-            <SelectDish shoppingCart={true}/> */}
+
+            {products.map(product => (
+
+              <SelectDish
+                key={product}
+                product={product}
+                shoppingCart={true}/>
+            ))}
 
           </ContainerDish>
-
           <PurchaseDetails>
             <span><FiTruck size={40} />Taxa de entrega: R$ 3,00</span>
             <span><FiDollarSign size={40} />Total: R$ 110,00</span>
