@@ -17,7 +17,7 @@ import AddProduct from '../pages/AddProduct';
 
 import ShoppingCart from '../pages/ShoppingCart';
 
-import Deposit from '../pages/Deposit';
+import Deposits from '../pages/Deposits';
 
 const Routes = () => {
   return (
@@ -44,7 +44,7 @@ const Routes = () => {
 
       <Route path="/shopping-cart" component={ShoppingCart} isPrivate />
 
-      <Route path="/deposit" component={Deposit} isPrivate />
+      <Route path="/deposits" component={Deposits} isPrivate />
     </Switch>
   );
 };

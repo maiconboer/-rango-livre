@@ -12,7 +12,7 @@ import { Container, Content, UserData, Cash, ContainerForm } from './styles';
 
 
 
-const Deposit = () => {
+const Deposits = () => {
 
   let [valueDeposit, setValueDeposit] = useState()
 
@@ -117,4 +117,4 @@ const Deposit = () => {
   );
 };
 
-export default Deposit;
+export default Deposits;
