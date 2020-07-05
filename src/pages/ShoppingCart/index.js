@@ -93,19 +93,15 @@ const ShoppingCart = (props) => {
     InputPassword.value = '';
   }
 
-  function handleSelectPaymentMercadoVale(event) {
-    console.log('mercado vale');
+  function handleSelectPayment(event) {
+    let modalPayment = document.querySelectorAll('.paymentMethod span')
 
-  }
+    modalPayment.forEach(span => {
+      console.log(span);
+      span.classList.remove('selected')
 
-  function handleSelectPaymentMercadoPago(event) {
-    console.log('mercado pago');
-
-  }
-
-  function handleSelectPaymentMoney(event) {
-    console.log('dinheiro');
-
+    })
+    event.target.classList.add('selected')
   }
 
   return (
@@ -142,8 +138,8 @@ const ShoppingCart = (props) => {
             </span>
           </Link>
 
-          {regular < valueDish ? console.log('sem saldo')
-            : console.log('pedido finalizado')}
+          {/* {regular < valueDish ? console.log('sem saldo')
+            : console.log('pedido finalizado')} */}
 
           <ContainerDish>
 
@@ -179,17 +175,17 @@ const ShoppingCart = (props) => {
             <div className='paymentMethod'>
               <h2>Escolha a forma de pagamento</h2>
 
-                  <span onClick={handleSelectPaymentMercadoVale}>
+                  <span onClick={handleSelectPayment}>
                     <FiCreditCard size={20}/>
                     Mercado Vale
                   </span>
 
-                  <span onClick={handleSelectPaymentMercadoPago}>
+                  <span onClick={handleSelectPayment}>
                     <FiCreditCard size={20}/>
                     Mercado Pago
                   </span>
 
-                  <span onClick={handleSelectPaymentMoney}>
+                  <span onClick={handleSelectPayment}>
                     <FiDollarSign size={20}/>
                     Dinheiro
                   </span>

@@ -162,6 +162,16 @@ export const SelectPaymentMethod = styled.div`
       color: var(--color3);
       margin-bottom: 16px;
       font-weight: bold;
+      cursor: pointer;
+    }
+
+    .selected {
+      color: var(--color1);
+
+      svg {
+        color: var(--color1);
+      }
+
     }
 
     svg {
