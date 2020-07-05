@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsRight, FiShoppingCart } from 'react-icons/fi'
 
 import api from '../../services/api'
@@ -12,6 +12,9 @@ import Dish from '../../components/CardDish'
 
 const HomeClient = () => {
 
+  const history = useHistory()
+  const [products, setProducts] = useState([])
+
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
 
   let meal = user.meal_allowance_balance;
@@ -19,8 +22,6 @@ const HomeClient = () => {
   let total = regular + meal;
   let city = user.addresses[0].city;
 
-
-  const [products, setProducts] = useState([])
 
   useEffect(() => {
     async function getProducts() {
@@ -31,10 +32,16 @@ const HomeClient = () => {
 
       setProducts([...products, response.data.products ])
     }
-
-
     getProducts();
   }, [])
+
+  function handleDeleteCredentials() {
+    localStorage.removeItem('@RangoLivre:user')
+    localStorage.removeItem('@RangoLivre:token')
+
+    // history.push(')
+    location.reload()
+  }
 
   return (
     <>
@@ -68,9 +75,16 @@ const HomeClient = () => {
                   Visualizar histórico de compras <FiChevronsRight size={20} />
                 </Link>
 
-                <Link to='/transfer-money'>
-                  Realizar transferencia<FiChevronsRight size={20} />
-                </Link>
+                <div className='transfer-or-exit'>
+                  <Link to='/transfer-money'>
+                    Realizar transferencia<FiChevronsRight size={20} />
+                  </Link>
+
+                  <Link  onClick={handleDeleteCredentials}>
+                    Sair<FiChevronsRight size={20} />
+                  </Link>
+                </div>
+
               </div>
 
           </UserData>
@@ -78,9 +92,6 @@ const HomeClient = () => {
           <h3 className='suggestions'>Sugestões da semana <span>Cardápio <FiChevronsRight /></span></h3>
 
           <ContainerDish>
-
-          {console.log(products[0])};
-
             {products[0] ? products[0].map(product => (
               <Link key={product.uuid} to={`products/${product.uuid}`}>
                 <Dish products={product} />
@@ -88,7 +99,7 @@ const HomeClient = () => {
 
               </Link>
             ))
-            : ' '}
+            : ''}
 
           </ContainerDish>
 

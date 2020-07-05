@@ -58,6 +58,16 @@ export const UserData = styled.div`
       }
     }
   }
+
+  .transfer-or-exit {
+    max-width: 360px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    justify-items: flex-end;
+    align-content: center;
+  }
 `;
 
 export const Cash = styled.div`
