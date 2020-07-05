@@ -13,6 +13,7 @@ import SelectDish from '../../components/SelectDish'
 const ShoppingCart = (props) => {
 
   const [products, setProducts] = useState([])
+  const [dataAboutProducts, setDataAboutProducts] = useState([])
   // const [products, setProducts] = useState([])
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
@@ -43,6 +44,9 @@ const ShoppingCart = (props) => {
 
           ]).then(data => {
             let qtd = arrayPurchase[0][i].qtdProducts
+
+            console.log(data[0].data);
+
 
             data[0].data.product = {
               ...data[0].data.product,
