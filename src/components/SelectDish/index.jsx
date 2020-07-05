@@ -59,7 +59,6 @@ const SelectDish = (props) => {
             </AddQuantity>
           :
           <ShowQuantity>
-            {console.log(props.product)}
             <span className='price'>{formatMoney(props.product.actual_price)}</span>
             <div>
               <p>Quant: {props.product.qtd}</p>

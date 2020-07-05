@@ -16,6 +16,7 @@ const ShoppingCart = (props) => {
   const [dataAboutProducts, setDataAboutProducts] = useState([])
   const [valueDish, setValueDish] = useState([])
   const [qtdProducts, setQtdProducts] = useState([])
+  const [checkOutTotal, setCheckOutTotal] = useState([])
   // const [min_estimative, setMin_estimative] = useState(0)
   // const [max_estimative, setMax_estimative] = useState(0)
 
@@ -46,7 +47,8 @@ const ShoppingCart = (props) => {
           valuesDishes.push(purchase[i].valueDish)
           setValueDish(valuesDishes.reduce((acc, valuesDishes) => {
             return acc + valuesDishes
-          }, 0))
+          }, 5))
+
 
           Promise.all([
             api.get(`products/${purchase[i].id}`),
@@ -125,6 +127,10 @@ const ShoppingCart = (props) => {
             </span>
           </Link>
 
+          {regular < valueDish ? console.log('sem saldo')
+            : console.log('pedido finalizado')}
+
+
           <ContainerDish>
 
             { products[0] && products[0] !== undefined
@@ -139,7 +145,7 @@ const ShoppingCart = (props) => {
 
           </ContainerDish>
           <PurchaseDetails>
-            <span><FiTruck size={40} />Taxa de entrega: R$ 3,00</span>
+            <span><FiTruck size={40} />Taxa de entrega: R$ 5,00</span>
             <span><FiDollarSign size={40} />Total: {formatMoney(valueDish)}</span>
             <span><FiClock size={40} />Tempo de entrega: 45 min</span>
           </PurchaseDetails>
@@ -173,15 +179,15 @@ const ShoppingCart = (props) => {
                     Dinheiro
                   </span>
 
-                  <input
+                  {/* <input
                     type='password'
                     name='password'
                     className='password'
                     placeholder='Digite sua senha'
-                  />
+                  /> */}
 
                   <div className='buttons'>
-                    {/* adicionar um form e submit nos btn */}
+
                     <button
                       className='btn-confirm'
 
