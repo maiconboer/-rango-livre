@@ -37,17 +37,18 @@ const Deposits = () => {
     setValueDeposit(size);
   }
 
-  async function handleSubmitDeposit(event) {
+  async function handleSubmitTransfer(event) {
     event.preventDefault();
 
-    const input = document.querySelector('input');
+    const input = document.querySelectorAll('input');
+    console.log(input);
     let amount = Number(input.value);
 
     console.log(token);
     console.log(amount);
 
     let response = await api.post(
-      'deposits',
+      'transactions',
       {
         amount: amount,
       },
@@ -118,7 +119,7 @@ const Deposits = () => {
           </Link>
 
           <ContainerForm>
-            <form onSubmit={handleSubmitDeposit}>
+            <form onSubmit={handleSubmitTransfer}>
               <input
                 type="number"
                 name="amount"
