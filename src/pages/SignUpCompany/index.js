@@ -51,7 +51,7 @@ const SignUp = () => {
         addToast({
           type: 'success',
           title: 'Cadastro realizo',
-          description: 'Você já pode fazer seu logon no GoBarber',
+          description: 'Você já pode fazer seu logon no Rango Livre',
         });
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
