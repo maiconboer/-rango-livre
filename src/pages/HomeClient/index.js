@@ -78,7 +78,7 @@ const HomeClient = () => {
                     Realizar transferencia<FiChevronsRight size={20} />
                   </Link>
 
-                  <Link  onClick={handleDeleteCredentials}>
+                  <Link to={'#'} onClick={handleDeleteCredentials}>
                     Sair<FiChevronsRight size={20} />
                   </Link>
                 </div>
