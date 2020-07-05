@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const ImageDish = styled.div`
   img {
     width: 100%;
+    max-height: 110px;
     border-radius: 4px 4px 0 0;
   }
 `;

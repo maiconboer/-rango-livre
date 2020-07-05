@@ -101,7 +101,7 @@ export const ShoppingCartIcon = styled.div`
   background-color: var(--color1);
   border-radius: 50%;
   margin-bottom: 8px;
-
+  color: var(--color5);
   display: flex;
   justify-content: center;
   align-items: center;
