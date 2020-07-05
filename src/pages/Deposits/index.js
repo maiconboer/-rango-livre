@@ -40,9 +40,6 @@ const Deposits = () => {
     const input = document.querySelector('input')
     let amount = Number(input.value)
 
-    console.log(token);
-    console.log(amount);
-
     let response = await api.post('deposits', {
       amount: amount
       },

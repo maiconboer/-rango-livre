@@ -14,6 +14,9 @@ const ShoppingCart = (props) => {
 
   const [products, setProducts] = useState([])
   const [dataAboutProducts, setDataAboutProducts] = useState([])
+  const [valueDish, setValueDish] = useState(0)
+  const [min_estimative, setMin_estimative] = useState(0)
+  const [max_estimative, setMax_estimative] = useState(0)
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
 
@@ -38,6 +41,9 @@ const ShoppingCart = (props) => {
 
       if(purchase && purchase !== null ) {
         for (let i = 0; i < purchase.length; i++) {
+
+
+          // console.log(purchase[i].valueDish);
 
           Promise.all([
             api.get(`products/${purchase[i].id}`),
@@ -115,13 +121,11 @@ const ShoppingCart = (props) => {
             </span>
           </Link>
 
+
           <ContainerDish>
 
             { products[0] && products[0] !== undefined
             ? products[0].map((product, index) => (
-              // console.log(dataAboutProducts[0][index].product),
-
-
               <SelectDish
                 key={product.uuid}
                 product={product}

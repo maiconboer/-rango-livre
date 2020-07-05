@@ -37,7 +37,7 @@ const Products = (props) => {
 
   function handleGetInformationToOrder(event) {
     let input = document.querySelector('input')
-    let qtdProducts = input.value
+    let qtdProducts = Number(input.value)
 
     setQuantity(qtdProducts)
 
@@ -49,10 +49,11 @@ const Products = (props) => {
         purchase = JSON.parse(localStorage.getItem('@RangoLivre:purchase'))
       }
 
+
       purchase.push({
         id,
         qtdProducts,
-        valueDish,
+        valueDish: qtdProducts * valueDish,
         min_estimative,
         max_estimative
       })
@@ -74,7 +75,7 @@ const Products = (props) => {
             <Link to='/home-client'>
               <span><FiChevronsLeft size={20} />Voltar</span>
             </Link>
-            {console.log(valueDish)}
+
 
             <img src={product.image} alt="Dish"/>
           </ImageDish>
