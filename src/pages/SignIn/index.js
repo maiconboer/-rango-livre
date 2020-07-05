@@ -93,7 +93,7 @@ const SignIn = () => {
             <Button type="submit">Entrar</Button>
           </Form>
 
-          <Link to="type-registration">
+          <Link to="signup-client">
             <FiLogIn />
             Criar conta
           </Link>

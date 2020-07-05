@@ -98,9 +98,6 @@ const Deposits = () => {
               </div>
 
               <div className='historic-transfer'>
-                <Link to='/historic'>
-                  Visualizar histórico de compras <FiChevronsRight size={20} />
-                </Link>
 
                 <Link to='/transfer-money'>
                   Realizar transferencia<FiChevronsRight size={20} />

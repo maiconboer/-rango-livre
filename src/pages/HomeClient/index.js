@@ -34,6 +34,7 @@ const HomeClient = () => {
   function handleDeleteCredentials() {
     localStorage.removeItem('@RangoLivre:user')
     localStorage.removeItem('@RangoLivre:token')
+    localStorage.removeItem('@RangoLivre:purchase')
 
     document.location.reload(true);
   }
@@ -66,8 +67,8 @@ const HomeClient = () => {
               </div>
 
               <div className='historic-transfer'>
-                <Link to='/historic'>
-                  Visualizar histórico de compras <FiChevronsRight size={20} />
+                <Link to='/deposits'>
+                  Realizar depósito <FiChevronsRight size={20} />
                 </Link>
 
                 <div className='transfer-or-exit'>
