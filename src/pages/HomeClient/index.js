@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsRight, FiShoppingCart } from 'react-icons/fi'
 
 import api from '../../services/api'
@@ -12,7 +12,6 @@ import Dish from '../../components/CardDish'
 
 const HomeClient = () => {
 
-  const history = useHistory()
   const [products, setProducts] = useState([])
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
@@ -39,8 +38,7 @@ const HomeClient = () => {
     localStorage.removeItem('@RangoLivre:user')
     localStorage.removeItem('@RangoLivre:token')
 
-    // history.push(')
-    location.reload()
+    document.location.reload(true);
   }
 
   return (
