@@ -14,9 +14,10 @@ const ShoppingCart = (props) => {
 
   const [products, setProducts] = useState([])
   const [dataAboutProducts, setDataAboutProducts] = useState([])
-  const [valueDish, setValueDish] = useState(0)
-  const [min_estimative, setMin_estimative] = useState(0)
-  const [max_estimative, setMax_estimative] = useState(0)
+  const [valueDish, setValueDish] = useState([])
+  const [qtdProducts, setQtdProducts] = useState([])
+  // const [min_estimative, setMin_estimative] = useState(0)
+  // const [max_estimative, setMax_estimative] = useState(0)
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
 
@@ -24,13 +25,13 @@ const ShoppingCart = (props) => {
   let regular = user.regular_balance;
   let total = regular + meal;
 
-
   useEffect(() => {
     async function getProducts() {
 
       let allProductsLocalStorage = []
       let arrayPurchase = [];
       let id = []
+      let valuesDishes = []
 
       let purchaseLocalStorage = localStorage.getItem('@RangoLivre:purchase');
 
@@ -42,8 +43,10 @@ const ShoppingCart = (props) => {
       if(purchase && purchase !== null ) {
         for (let i = 0; i < purchase.length; i++) {
 
-
-          // console.log(purchase[i].valueDish);
+          valuesDishes.push(purchase[i].valueDish)
+          setValueDish(valuesDishes.reduce((acc, valuesDishes) => {
+            return acc + valuesDishes
+          }, 0))
 
           Promise.all([
             api.get(`products/${purchase[i].id}`),
@@ -66,6 +69,7 @@ const ShoppingCart = (props) => {
           });
         }
       }
+      setQtdProducts(qtdProducts)
     }
 
   getProducts();
@@ -121,7 +125,6 @@ const ShoppingCart = (props) => {
             </span>
           </Link>
 
-
           <ContainerDish>
 
             { products[0] && products[0] !== undefined
@@ -137,7 +140,7 @@ const ShoppingCart = (props) => {
           </ContainerDish>
           <PurchaseDetails>
             <span><FiTruck size={40} />Taxa de entrega: R$ 3,00</span>
-            <span><FiDollarSign size={40} />Total: R$ 110,00</span>
+            <span><FiDollarSign size={40} />Total: {formatMoney(valueDish)}</span>
             <span><FiClock size={40} />Tempo de entrega: 45 min</span>
           </PurchaseDetails>
 

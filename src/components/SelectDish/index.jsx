@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiPlus, FiMinus } from 'react-icons/fi'
 
 import { Container, ImageAndDescription, AddQuantity, ShowQuantity } from './styles'
@@ -22,6 +22,12 @@ const SelectDish = (props) => {
     dish > -1 ? setQuantityDish(dish) : dish = 0
 
   }
+
+  let arrayPurchase = [];
+  let purchaseLocalStorage = localStorage.getItem('@RangoLivre:purchase');
+
+  let purchase = JSON.parse(purchaseLocalStorage)
+  arrayPurchase.push(purchase)
 
   return (
     <>
@@ -53,9 +59,10 @@ const SelectDish = (props) => {
             </AddQuantity>
           :
           <ShowQuantity>
+            {console.log(props.product)}
             <span className='price'>{formatMoney(props.product.actual_price)}</span>
             <div>
-              <p>Quant: 1(estatico)</p>
+              <p>Quant: {props.product.qtd}</p>
             </div>
           </ShowQuantity>
           }
