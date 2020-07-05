@@ -14,7 +14,6 @@ const ShoppingCart = (props) => {
 
   const [products, setProducts] = useState([])
   const [dataAboutProducts, setDataAboutProducts] = useState([])
-  // const [products, setProducts] = useState([])
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
 
@@ -26,7 +25,7 @@ const ShoppingCart = (props) => {
   useEffect(() => {
     async function getProducts() {
 
-      let test = []
+      let allProductsLocalStorage = []
       let arrayPurchase = [];
       let id = []
 
@@ -46,10 +45,9 @@ const ShoppingCart = (props) => {
           ]).then(data => {
             let qtd = arrayPurchase[0][i].qtdProducts
 
-            test.push(data[0].data)
+            allProductsLocalStorage.push(data[0].data)
 
-            setDataAboutProducts([...dataAboutProducts, test])
-
+            setDataAboutProducts([...dataAboutProducts, allProductsLocalStorage])
 
             data[0].data.product = {
               ...data[0].data.product,
@@ -58,6 +56,7 @@ const ShoppingCart = (props) => {
 
             allProducts.push(data[0].data.product)
             setProducts([...products, allProducts])
+
           });
         }
       }
@@ -80,7 +79,6 @@ const ShoppingCart = (props) => {
     modalMethodPayment.classList.remove('active')
 
     InputPassword.value = '';
-
   }
 
   return (
@@ -119,9 +117,10 @@ const ShoppingCart = (props) => {
 
           <ContainerDish>
 
-            { products[0]
+            { products[0] && products[0] !== undefined
             ? products[0].map((product, index) => (
-              console.log(dataAboutProducts[index]),
+              // console.log(dataAboutProducts[0][index].product),
+
 
               <SelectDish
                 key={product.uuid}

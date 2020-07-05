@@ -13,6 +13,9 @@ const Products = (props) => {
   const history = useHistory();
   let [product, setProduct] = useState([])
   let [quantity, setQuantity] = useState(0)
+  let [valueDish, setValueDish] = useState(0)
+  let [min_estimative, setMin_estimative] = useState(0)
+  let [max_estimative, setMax_estimative] = useState(0)
 
   let purchase = []
   let test = localStorage.getItem('@RangoLivre:purchase')
@@ -24,6 +27,9 @@ const Products = (props) => {
     async function getDataProduct() {
       const response = await api.get(`products/${id}`)
       setProduct(response.data.product)
+      setValueDish(response.data.product.actual_price)
+      setMin_estimative(response.data.product.min_estimative)
+      setMax_estimative(response.data.product.max_estimative)
     }
 
     getDataProduct()
@@ -35,6 +41,7 @@ const Products = (props) => {
 
     setQuantity(qtdProducts)
 
+
     if(qtdProducts > 0) {
       input.style.border = '2px solid white'
 
@@ -44,7 +51,10 @@ const Products = (props) => {
 
       purchase.push({
         id,
-        qtdProducts
+        qtdProducts,
+        valueDish,
+        min_estimative,
+        max_estimative
       })
 
       localStorage.setItem('@RangoLivre:purchase', JSON.stringify(purchase));
@@ -64,6 +74,7 @@ const Products = (props) => {
             <Link to='/home-client'>
               <span><FiChevronsLeft size={20} />Voltar</span>
             </Link>
+            {console.log(valueDish)}
 
             <img src={product.image} alt="Dish"/>
           </ImageDish>
@@ -74,11 +85,9 @@ const Products = (props) => {
               <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
             </span>
           </h3>
-          {/* <p className='price' >A partir de R$ 49,00</p> */}
 
           <p className='about-place'>Sobre o local: Convide a família e venha conhecer os melhores pratos da cidade! </p>
 
-          {/* map nos pratos, fotos, descriptions e etc */}
           <ContainerDish>
 
             <SelectDish product={product}/>
