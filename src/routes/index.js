@@ -16,11 +16,11 @@ import AddProduct from '../pages/AddProduct';
 import ShoppingCart from '../pages/ShoppingCart';
 
 import Deposits from '../pages/Deposits';
+import Transfer from '../pages/Transfer';
 
 const Routes = () => {
   return (
     <Switch>
-
       <Route path="/" exact component={SignIn} />
 
       <Route path="/signup-client" component={SignUpClient} />
@@ -36,6 +36,7 @@ const Routes = () => {
 
       <Route path="/deposits" component={Deposits} isPrivate />
 
+      <Route path="/transfer-money" component={Transfer} isPrivate />
     </Switch>
   );
 };
