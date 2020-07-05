@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsRight, FiChevronsLeft } from 'react-icons/fi'
 
 import api from '../../services/api'
+import { useToast } from '../../hooks/ToastContext';
 
 import formatMoney from '../../utils/formatMoney'
 import Button from '../../components/Button';
 
 import { Container, Content, UserData, Cash, ContainerForm } from './styles';
 
-
-
 const Deposits = () => {
 
   let [valueDeposit, setValueDeposit] = useState()
+
+  const { addToast } = useToast();
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
 
@@ -37,21 +38,36 @@ const Deposits = () => {
     event.preventDefault()
 
     const input = document.querySelector('input')
-    let value = Number(input.value)
+    let amount = Number(input.value)
 
     console.log(token);
-    console.log(value);
+    console.log(amount);
 
-  //   let response = await api.post('deposits', value, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${token}`
-  //     }
-  //   })
-  // }
+    let response = await api.post('deposits', {
+      amount: amount
+      },
+      {
+        headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
 
-  let response = await api.post('deposits', value)
+    if(response.status === 200) {
 
+        addToast({
+          type: 'success',
+          title: 'Depósito realizado',
+          description: 'Deposito realizado com sucesso, atualizando valores, faça login novamente',
+        });
+
+        setTimeout(() => {
+        localStorage.removeItem('@RangoLivre:purchase')
+        localStorage.removeItem('@RangoLivre:token')
+        localStorage.removeItem('@RangoLivre:user')
+
+        document.location.reload(true);
+      }, 2000);
+    }
 }
 
   return (

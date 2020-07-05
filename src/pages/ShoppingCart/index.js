@@ -26,6 +26,7 @@ const ShoppingCart = (props) => {
   useEffect(() => {
     async function getProducts() {
 
+      let test = []
       let arrayPurchase = [];
       let id = []
 
@@ -45,7 +46,9 @@ const ShoppingCart = (props) => {
           ]).then(data => {
             let qtd = arrayPurchase[0][i].qtdProducts
 
-            console.log(data[0].data);
+            test.push(data[0].data)
+
+            setDataAboutProducts([...dataAboutProducts, test])
 
 
             data[0].data.product = {
@@ -117,7 +120,9 @@ const ShoppingCart = (props) => {
           <ContainerDish>
 
             { products[0]
-            ? products[0].map(product => (
+            ? products[0].map((product, index) => (
+              console.log(dataAboutProducts[index]),
+
               <SelectDish
                 key={product.uuid}
                 product={product}
