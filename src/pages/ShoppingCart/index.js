@@ -13,7 +13,7 @@ import SelectDish from '../../components/SelectDish'
 const ShoppingCart = (props) => {
 
   const [products, setProducts] = useState([])
-  const [showProducts, setShowProducts] = useState([])
+  // const [products, setProducts] = useState([])
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
 
@@ -33,8 +33,7 @@ const ShoppingCart = (props) => {
       let purchase = JSON.parse(purchaseLocalStorage)
       arrayPurchase.push(purchase)
 
-
-      // VERIFICAR CODIGO PARA LISTAR TODOS OS PRATOS SELECIONADOS E NÃO APENAS 1
+      let allProducts = []
 
       if(purchase && purchase !== null ) {
         for (let i = 0; i < purchase.length; i++) {
@@ -49,15 +48,15 @@ const ShoppingCart = (props) => {
               ...data[0].data.product,
               qtd
             }
-            setProducts([...products, data[0].data.product])
-            setShowProducts(products)
+
+            allProducts.push(data[0].data.product)
+            setProducts([...products, allProducts])
           });
+        }
       }
     }
-  }
 
-
-    getProducts();
+  getProducts();
   }, [])
 
   // criar a lógica paa verificar se o cliente possui saldo (mercado pago ou mercado vale) para finalizar o pedido, se a compra for efetuada com sucesso, remover o modal de escolher forma de pagamento e renderizar o modal de finalização do pedido, caso não houver saldo, renderizar modal sobre erro no pedido e etc
@@ -79,7 +78,6 @@ const ShoppingCart = (props) => {
 
   return (
     <>
-    {console.log(products)}
       <Container>
         <Content>
           <UserData>
@@ -114,13 +112,15 @@ const ShoppingCart = (props) => {
 
           <ContainerDish>
 
-            {products.map(product => (
-
+            { products[0]
+            ? products[0].map(product => (
               <SelectDish
-                key={product}
+                key={product.uuid}
                 product={product}
                 shoppingCart={true}/>
-            ))}
+              ))
+            : ''
+            }
 
           </ContainerDish>
           <PurchaseDetails>
