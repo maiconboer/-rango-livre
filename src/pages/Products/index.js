@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom'
 import {FiChevronsLeft, FiStar, FiCheck } from 'react-icons/fi'
 
 import api from '../../services/api'
@@ -12,8 +12,12 @@ import SelectDish from '../../components/SelectDish'
 
 const Products = (props) => {
 
+  const history = useHistory();
   let [product, setProduct] = useState([])
+  let [quantity, setQuantity] = useState(0)
 
+  let purchase = []
+  let test = localStorage.getItem('@RangoLivre:purchase')
   let location = useLocation()
   let id = location.pathname.slice(10, location.length)
 
@@ -26,6 +30,33 @@ const Products = (props) => {
 
     getDataProduct()
   },[])
+
+  function handleGetInformationToOrder(event) {
+    let input = document.querySelector('input')
+    let qtdProducts = input.value
+
+    setQuantity(qtdProducts)
+
+    if(qtdProducts > 0) {
+      input.style.border = '2px solid white'
+
+      if (localStorage.hasOwnProperty('@RangoLivre:purchase')) {
+        purchase = JSON.parse(localStorage.getItem('@RangoLivre:purchase'))
+      }
+
+      purchase.push({
+        id,
+        qtdProducts
+      })
+
+      localStorage.setItem('@RangoLivre:purchase', JSON.stringify(purchase));
+
+      history.push('/shopping-cart')
+    } else {
+      input.style.border = '2px solid red'
+    }
+
+  }
 
   return (
     <>
@@ -57,10 +88,12 @@ const Products = (props) => {
           </ContainerDish>
 
           <PlaceOrder>
-            <Link to='shopping-cart'>
+            <button onClick={handleGetInformationToOrder}>
+              <Link to='#'>
               <FiCheck size={20} />
                 Pedir agora
-            </Link>
+              </Link>
+            </button>
           </PlaceOrder>
 
         </Content>

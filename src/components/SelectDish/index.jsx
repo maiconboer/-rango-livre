@@ -7,8 +7,6 @@ import formatMoney from '../../utils/formatMoney'
 
 const SelectDish = (props) => {
 
-  console.log(props.product);
-
   const [quantityDish, setQuantityDish] = useState(0)
 
   function handleAddDish() {
@@ -27,6 +25,7 @@ const SelectDish = (props) => {
 
   return (
     <>
+
     {Array.isArray(props.product) ?
      ' '
     :
@@ -54,9 +53,9 @@ const SelectDish = (props) => {
             </AddQuantity>
           :
           <ShowQuantity>
-            <span className='price'>R$ 59</span>
+            <span className='price'>{formatMoney(props.product.actual_price)}</span>
             <div>
-              <p>Quant: 1</p>
+              <p>Quant: 1(estatico)</p>
             </div>
           </ShowQuantity>
           }

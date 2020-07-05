@@ -2,11 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsLeft, FiTruck, FiClock, FiCheck, FiCheckCircle } from 'react-icons/fi'
 
+import formatMoney from '../../utils/formatMoney'
+
 import { Container, Content, UserData, Cash, ContainerDish, PurchaseDetails, CheckOut, SelectPaymentMethod, PaymentSuccess } from './styles';
 
 import SelectDish from '../../components/SelectDish'
 
-const ShoppingCart = () => {
+
+const ShoppingCart = (props) => {
+
+  const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
+
+  let meal = user.meal_allowance_balance;
+  let regular = user.regular_balance;
+  let total = regular + meal;
+
 
   // criar a lógica paa verificar se o cliente possui saldo (mercado pago ou mercado vale) para finalizar o pedido, se a compra for efetuada com sucesso, remover o modal de escolher forma de pagamento e renderizar o modal de finalização do pedido, caso não houver saldo, renderizar modal sobre erro no pedido e etc
 
@@ -35,7 +45,7 @@ const ShoppingCart = () => {
                   <FiCreditCard size={20}/>
                   <span>Mercado Vale</span>
                 </div>
-                <span>R$ 150,00</span>
+                <span>{formatMoney(meal)}</span>
               </Cash>
 
               <Cash>
@@ -43,16 +53,16 @@ const ShoppingCart = () => {
                   <FiDollarSign size={20} />
                   <span>Mercado Pago</span>
                 </div>
-                <span>R$ 150,00</span>
+                <span>{formatMoney(regular)}</span>
 
               </Cash>
 
               <div className='total'>
-                <p>Saldo total R$ 300,00</p>
+                <p>Saldo total {formatMoney(total)}</p>
               </div>
           </UserData>
 
-          <Link to='products'>
+          <Link to='/home-client'>
             <span className='backToDetail'>
               <FiChevronsLeft />
               Voltar
@@ -60,9 +70,9 @@ const ShoppingCart = () => {
           </Link>
 
           <ContainerDish>
-            <SelectDish shoppingCart={true}/>
-            <SelectDish shoppingCart={true}/>
-            <SelectDish shoppingCart={true}/>
+            {/* <SelectDish product={product} shoppingCart={true}/> */}
+            {/* <SelectDish shoppingCart={true}/>
+            <SelectDish shoppingCart={true}/> */}
 
           </ContainerDish>
 

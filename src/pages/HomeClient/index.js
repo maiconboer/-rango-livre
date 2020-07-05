@@ -85,9 +85,11 @@ const HomeClient = () => {
 
           </ContainerDish>
 
+          <Link to='/shopping-cart'>
           <ShoppingCartIcon>
             <FiShoppingCart size={24}/>
           </ShoppingCartIcon>
+          </Link>
         </Content>
       </Container>
     </>

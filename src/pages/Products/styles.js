@@ -88,6 +88,16 @@ export const PlaceOrder = styled.div`
   align-items: center;
   font-weight: bold;
 
+  button {
+    border-radius: 4px;
+    width: 224px;
+    height: 44px;
+    border: none;
+    color: var(--color5);
+    background-color: var(--color1);
+    text-decoration: none;
+  }
+
   a {
     display: flex;
     justify-content: center;

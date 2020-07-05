@@ -141,9 +141,25 @@ const SignUpClient = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu cadastro</h1>
 
-            <Input type="text" name="name" icon={FiUser} placeholder="Nome" />
+            <Input
+              type="text"
+              name="name"
+              icon={FiUser}
+              placeholder="Nome"
+            />
 
-            <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input
+              name="email"
+              icon={FiMail}
+              placeholder="E-mail"
+            />
+
+            <Input
+              type="password"
+              name="password"
+              icon={FiLock}
+              placeholder="Senha"
+            />
 
             <Input
               type="number"
@@ -169,14 +185,7 @@ const SignUpClient = () => {
               onBlur={handleGetCep}
             />
 
-            <Input
-              type="password"
-              name="password"
-              icon={FiLock}
-              placeholder="Senha"
-            />
-
-            {/* <Input name="street" icon={FiCompass} placeholder="Rua/Av." />
+            <Input name="street" icon={FiCompass} placeholder="Rua/Av." />
 
             <Input
               type="number"
@@ -209,7 +218,7 @@ const SignUpClient = () => {
               value={uf || ''}
               onChange={handleTest}
               disabled
-            /> */}
+            />
 
             <Button type="submit">Cadastrar</Button>
           </Form>
