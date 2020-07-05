@@ -3,11 +3,11 @@ import { FiPlus, FiMinus } from 'react-icons/fi'
 
 import { Container, ImageAndDescription, AddQuantity, ShowQuantity } from './styles'
 
-import dishImg from '../../assets/dish.jpg'
+import formatMoney from '../../utils/formatMoney'
 
 const SelectDish = (props) => {
 
-
+  console.log(props.product);
 
   const [quantityDish, setQuantityDish] = useState(0)
 
@@ -27,40 +27,42 @@ const SelectDish = (props) => {
 
   return (
     <>
-    <Container>
-      <ImageAndDescription>
-        <img src={dishImg} alt="dish"/>
+    {Array.isArray(props.product) ?
+     ' '
+    :
+      <Container>
+        <ImageAndDescription>
+          <img src={props.product.image} alt={props.product.name}/>
 
-        <div>
-          <p>Peixe grelhado.</p>
-          <span>Peixe grelhado servido com salada.</span>
-        </div>
-
-      { !props.shoppingCart
-      ?
-        <AddQuantity>
-          <span className='price'>R$ 59</span>
           <div>
-          <FiMinus size={22} onClick={handleRemoveDish} />
-          <input
-            disabled type="number"
-            name="qtdDish"
-            value={quantityDish}/>
-          <FiPlus size={22} onClick={handleAddDish}/>
+            <p>{props.product.name}</p>
+            <span>{props.product.description}</span>
           </div>
-        </AddQuantity>
-      :
-        <ShowQuantity>
-          <span className='price'>R$ 59</span>
-          <div>
-            <p>Quant: 1</p>
-          </div>
-        </ShowQuantity>
-      }
 
-
-    </ImageAndDescription>
-    </Container>
+          { !props.shoppingCart
+          ?
+            <AddQuantity>
+              <span className='price'>{formatMoney(props.product.actual_price)}</span>
+              <div>
+              <FiMinus size={22} onClick={handleRemoveDish} />
+              <input
+                disabled type="number"
+                name="qtdDish"
+                value={quantityDish}/>
+              <FiPlus size={22} onClick={handleAddDish}/>
+              </div>
+            </AddQuantity>
+          :
+          <ShowQuantity>
+            <span className='price'>R$ 59</span>
+            <div>
+              <p>Quant: 1</p>
+            </div>
+          </ShowQuantity>
+          }
+        </ImageAndDescription>
+      </Container>
+    }
     </>
   )
 }

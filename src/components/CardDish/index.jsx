@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FiStar, FiEdit3 } from 'react-icons/fi'
 
 import formatMoney from '../../utils/formatMoney'
@@ -12,7 +12,6 @@ const Dish = (props) => {
 
   return (
       <Container>
-        {console.log(product)}
           <ImageDish>
             <img src={product.image} alt={product.name}/>
           </ImageDish>

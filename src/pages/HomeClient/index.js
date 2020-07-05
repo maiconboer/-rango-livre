@@ -73,21 +73,16 @@ const HomeClient = () => {
 
           <h3 className='suggestions'>Sugestões da semana <span>Cardápio <FiChevronsRight /></span></h3>
 
-          {/* map nos pratos, fotos, descriptions, link para demais pratos da empresa e etc */}
           <ContainerDish>
 
+            {products[0] ? products[0].map(product => (
+              <Link key={product.uuid} to={`products/${product.uuid}`}>
+                <Dish products={product} />
 
-          {products[0] ? products[0].map(product => (
-            <Link key={product.uuid} to='products'>
-              <Dish products={product} />
+              </Link>
+            ))
+            : ''}
 
-            </Link>
-          ))
-          : ''}
-
-
-
-          {/* {console.log(products)} */}
           </ContainerDish>
 
           <ShoppingCartIcon>
