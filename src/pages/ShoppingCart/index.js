@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsLeft, FiTruck, FiClock, FiCheck, FiCheckCircle } from 'react-icons/fi'
 
 import formatMoney from '../../utils/formatMoney'
+import { useToast } from '../../hooks/ToastContext';
 
 import api from '../../services/api'
 
@@ -12,6 +13,8 @@ import SelectDish from '../../components/SelectDish'
 
 const ShoppingCart = (props) => {
 
+  const { addToast } = useToast();
+
   const [allProductsPurchase, setAllProductsPurchase] = useState([])
   const [dataAboutProducts, setDataAboutProducts] = useState([])
   const [valueDish, setValueDish] = useState([])
@@ -19,10 +22,8 @@ const ShoppingCart = (props) => {
   const [checkOutTotal, setCheckOutTotal] = useState([])
   const [payment_method, setPayment_method] = useState()
 
-  // const [min_estimative, setMin_estimative] = useState(0)
-  // const [max_estimative, setMax_estimative] = useState(0)
-
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
+  const token = localStorage.getItem('@RangoLivre:token');
 
   let meal = user.meal_allowance_balance;
   let regular = user.regular_balance;
@@ -101,11 +102,11 @@ const ShoppingCart = (props) => {
 
 
     switch (event.target.textContent) {
-      case 'Mercado Vale':
+      case 'Mercado Pago':
         setPayment_method(0)
         break;
 
-      case 'Mercado Pago':
+      case 'Mercado Vale ':
         setPayment_method(1)
         break;
 
@@ -126,7 +127,6 @@ const ShoppingCart = (props) => {
     let price = valueDish
 
     allProductsPurchase[0].forEach((product, index) => {
-    console.log(product);
       let uuid = product.uuid
 
 
@@ -138,11 +138,45 @@ const ShoppingCart = (props) => {
       }
     })
 
-    const response = await api.post('orders', data)
+    console.log(data);
 
-    // console.log(data);
-    console.log(response);
+    const response = await api.post('orders', data, {
+        headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
 
+    if(response.status === 201) {
+      let modalSucess = document.querySelector('.paymentSuccess')
+
+      const modalMethodPayment = document.querySelector('.paymentMethod')
+
+      modalMethodPayment.classList.remove('active')
+      modalSucess.classList.add('active')
+
+      addToast({
+        type: 'success',
+        title: 'Pedido finalizado.',
+        description: 'Pedido realizado com sucesso, atualizando valores, faça login novamente',
+      });
+
+      setTimeout(() => {
+        localStorage.removeItem('@RangoLivre:purchase')
+        localStorage.removeItem('@RangoLivre:token')
+        localStorage.removeItem('@RangoLivre:user')
+
+        document.location.reload(true);
+      }, 3000);
+
+    } else {
+
+      addToast({
+        type: 'error',
+        title: 'Pedido não finalizado',
+        description: 'Verifique se possui saldo suficiente para completar o pedido',
+      });
+
+    }
   }
 
   return (
@@ -178,15 +212,6 @@ const ShoppingCart = (props) => {
               Voltar
             </span>
           </Link>
-
-          {/* {regular < valueDish ? console.log('sem saldo')
-            : console.log('pedido finalizado')} */}
-
-            {/* {console.log(payment_method)}
-            {console.log(payment_method)}
-            {console.log(payment_method)}
-            {console.log(payment_method)} */}
-            {/* {console.log(products)} */}
 
           <ContainerDish>
 
@@ -237,13 +262,6 @@ const ShoppingCart = (props) => {
                     Dinheiro
                   </span>
 
-                  {/* <input
-                    type='password'
-                    name='password'
-                    className='password'
-                    placeholder='Digite sua senha'
-                  /> */}
-
                   <div className='buttons'>
 
                     <button
@@ -263,7 +281,6 @@ const ShoppingCart = (props) => {
             </div>
           </SelectPaymentMethod>
 
-          {/* Se o pagamento for bem sucedido, adicionar a classe active neste modal via js */}
           <PaymentSuccess>
             <div className='paymentSuccess'>
               <h2>

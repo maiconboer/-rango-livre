@@ -74,7 +74,7 @@ const Transfer = () => {
         type: 'success',
         title: 'Tranferêcia realizada',
         description:
-          'Tranferêcia realizado com sucesso, atualizando valores, faça login novamente',
+          'Tranferêcia realizada com sucesso, atualizando valores, faça login novamente',
       });
 
       setTimeout(() => {
