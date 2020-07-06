@@ -138,6 +138,14 @@ const ShoppingCart = (props) => {
       }
     })
 
+    console.log(payment_method);
+
+
+    // if(payment_method === 1) {
+    //   console.log('não tem saldo');
+
+    // }
+
     const response = await api.post('orders', data, {
         headers: {
         Authorization: `Bearer ${token}`
