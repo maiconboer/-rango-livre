@@ -138,8 +138,6 @@ const ShoppingCart = (props) => {
       }
     })
 
-    console.log(data);
-
     const response = await api.post('orders', data, {
         headers: {
         Authorization: `Bearer ${token}`

@@ -42,8 +42,6 @@ const Transfer = () => {
       ...formData,
       [name]: value,
     });
-
-    console.log(formData);
   }
 
   async function handleSubmitTransfer(event) {
@@ -67,8 +65,6 @@ const Transfer = () => {
       },
     );
 
-    console.log(response);
-
     if (response.status === 200 || response.status === 201) {
       addToast({
         type: 'success',
@@ -83,7 +79,7 @@ const Transfer = () => {
         localStorage.removeItem('@RangoLivre:user');
 
         document.location.reload(true);
-      }, 2000);
+      }, 5000);
     }
   }
 
