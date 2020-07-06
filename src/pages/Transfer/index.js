@@ -16,7 +16,7 @@ import Button from '../../components/Button';
 
 import { Container, Content, UserData, Cash, ContainerForm } from './styles';
 
-const Deposits = () => {
+const Transfer = () => {
   const [formData, setFormData] = useState({
     amount: 0,
     accountType: 0,
@@ -67,7 +67,9 @@ const Deposits = () => {
       },
     );
 
-    if (response.status === 200) {
+    console.log(response);
+
+    if (response.status === 200 || response.status === 201) {
       addToast({
         type: 'success',
         title: 'Tranferêcia realizada',
@@ -188,4 +190,4 @@ const Deposits = () => {
   );
 };
 
-export default Deposits;
+export default Transfer;
