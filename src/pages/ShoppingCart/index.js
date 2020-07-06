@@ -125,8 +125,8 @@ const ShoppingCart = (props) => {
   async function handleSubmitOrder(event) {
 
     let data = {}
-
     let products = []
+    let price = valueDish
 
     allProductsPurchase[0].forEach((product, index) => {
     console.log(product);
@@ -134,16 +134,17 @@ const ShoppingCart = (props) => {
 
 
       products.push({uuid, quantity: 1})
-
       data = {
         products,
+        price,
         payment_method
       }
     })
 
-    console.log(data);
+    const response = await api.post('orders', data)
 
-
+    // console.log(data);
+    console.log(response);
 
   }
 
