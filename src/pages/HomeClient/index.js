@@ -13,20 +13,24 @@ import Dish from '../../components/CardDish'
 const HomeClient = () => {
 
   const [products, setProducts] = useState([])
-
-  const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('@RangoLivre:user')));
 
   let meal = user.meal_allowance_balance;
   let regular = user.regular_balance;
   let total = regular + meal;
   let city = user.addresses[0].city;
 
+  const token = localStorage.getItem('@RangoLivre:token');
 
   useEffect(() => {
     async function getProducts() {
       const response = await api.get(`products?city=${city}&offset=0&limit=10`)
+      const userResponse = await api.get(`users/${user.uuid}`, {headers: {
+        Authorization: `Bearer ${token}`
+      }})
 
       setProducts([...products, response.data.products ])
+      setUser(userResponse.data)
     }
     getProducts();
   }, [])
