@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import {
   FiCreditCard,
@@ -28,13 +28,11 @@ const Transfer = () => {
 
 
   const { addToast } = useToast();
+  const history = useHistory();
 
   const [regular, setRegular] = useState(user.regular_balance)
-
   const token = localStorage.getItem('@RangoLivre:token');
-
   let meal = user.meal_allowance_balance;
-  // let regular = user.regular_balance;
   let total = regular + meal;
 
   function handleChangeInput(event) {
@@ -85,8 +83,12 @@ const Transfer = () => {
         type: 'success',
         title: 'Transferência realizada',
         description:
-          'Transferência realizada com sucesso.',
+          'Transferência realizada com sucesso, redirencionando para home-page',
       });
+
+      setTimeout(() => {
+        history.push('/home-client');
+      }, 5000);
 
       setRegular(response.data.regular_balance)
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import {FiCreditCard, FiDollarSign, FiChevronsLeft, FiTruck, FiClock, FiCheck, FiCheckCircle } from 'react-icons/fi'
 
 import formatMoney from '../../utils/formatMoney'
@@ -14,6 +14,7 @@ import SelectDish from '../../components/SelectDish'
 const ShoppingCart = (props) => {
 
   const { addToast } = useToast();
+  const history = useHistory();
 
   const [allProductsPurchase, setAllProductsPurchase] = useState([])
   const [dataAboutProducts, setDataAboutProducts] = useState([])
@@ -138,14 +139,6 @@ const ShoppingCart = (props) => {
       }
     })
 
-    console.log(payment_method);
-
-
-    // if(payment_method === 1) {
-    //   console.log('não tem saldo');
-
-    // }
-
     const response = await api.post('orders', data, {
         headers: {
         Authorization: `Bearer ${token}`
@@ -163,15 +156,13 @@ const ShoppingCart = (props) => {
       addToast({
         type: 'success',
         title: 'Pedido finalizado.',
-        description: 'Pedido realizado com sucesso, atualizando valores, faça login novamente',
+        description: 'Redirecionando para home-page',
       });
 
       setTimeout(() => {
         localStorage.removeItem('@RangoLivre:purchase')
-        localStorage.removeItem('@RangoLivre:token')
-        localStorage.removeItem('@RangoLivre:user')
+        history.push('/home-client');
 
-        document.location.reload(true);
       }, 5000);
 
     } else {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import {FiCreditCard, FiDollarSign, FiChevronsRight, FiChevronsLeft } from 'react-icons/fi'
 
@@ -16,6 +16,7 @@ const Deposits = () => {
   let [valueDeposit, setValueDeposit] = useState()
 
   const { addToast } = useToast();
+  const history = useHistory();
 
   const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
 
@@ -58,12 +59,9 @@ const Deposits = () => {
         });
 
         setTimeout(() => {
-        localStorage.removeItem('@RangoLivre:purchase')
-        localStorage.removeItem('@RangoLivre:token')
-        localStorage.removeItem('@RangoLivre:user')
-
+          history.push('/home-client');
         document.location.reload(true);
-      }, 2000);
+      }, 5000);
     }
 }
 
