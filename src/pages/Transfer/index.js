@@ -16,7 +16,7 @@ import Button from '../../components/Button';
 
 import { Container, Content, UserData, Cash, ContainerForm } from './styles';
 
-const Deposits = () => {
+const Transfer = () => {
   const [formData, setFormData] = useState({
     amount: 0,
     accountType: 0,
@@ -42,6 +42,8 @@ const Deposits = () => {
       ...formData,
       [name]: value,
     });
+
+    console.log(formData);
   }
 
   async function handleSubmitTransfer(event) {
@@ -52,11 +54,11 @@ const Deposits = () => {
     let response = await api.post(
       'transactions',
       {
-        amount,
+        amount: Number(amount),
         account_type: Number(accountType),
         to_CPF: toCPF,
         scheduled: !scheduled,
-        timestamp: Number(Date.parse(timestamp)),
+        timestamp: Number(Date.parse(timestamp)) / 1000,
       },
       {
         headers: {
@@ -65,7 +67,9 @@ const Deposits = () => {
       },
     );
 
-    if (response.status === 200) {
+    console.log(response);
+
+    if (response.status === 200 || response.status === 201) {
       addToast({
         type: 'success',
         title: 'Tranferêcia realizada',
@@ -137,26 +141,43 @@ const Deposits = () => {
               <div>
                 <input
                   type="radio"
-                  name="account_type"
+                  name="accountType"
                   value="0"
                   id="type0"
+                  onChange={handleChangeInput}
                   checked
                 />
                 <label htmlFor="type0">Mercado Pago</label>
-                <input type="radio" name="account_type" value="1" id="type1" />
+                <input
+                  type="radio"
+                  name="accountType"
+                  value="1"
+                  id="type1"
+                  onChange={handleChangeInput}
+                />
                 <label htmlFor="type0">Mercado Vale</label>
               </div>
 
               <input
                 type="text"
-                name="to_CPF"
+                name="toCPF"
                 placeholder="CPF de quem irá receber"
+                onChange={handleChangeInput}
               />
 
-              <input type="date" name="timestamp" />
+              <input
+                type="date"
+                name="timestamp"
+                onChange={handleChangeInput}
+              />
 
               <div>
-                <input type="checkbox" name="scheduled" id="scheduled" />
+                <input
+                  type="checkbox"
+                  name="scheduled"
+                  id="scheduled"
+                  onChange={handleChangeInput}
+                />
                 <label htmlFor="scheduled">Agendar transferência</label>
               </div>
 
@@ -169,4 +190,4 @@ const Deposits = () => {
   );
 };
 
-export default Deposits;
+export default Transfer;
