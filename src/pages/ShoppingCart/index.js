@@ -103,7 +103,6 @@ const ShoppingCart = (props) => {
     })
 
 
-
     switch (event.target.textContent) {
       case 'Mercado Vale':
         setPayment_method(0)
@@ -125,11 +124,30 @@ const ShoppingCart = (props) => {
 
   async function handleSubmitOrder(event) {
 
-    console.log(products[0]);
+    let data = {}
+    // let uuid = []
+    let prod = []
 
-    let data = {
-      products
-    }
+    products[0].forEach((product, index) => {
+    console.log(product);
+      let uuid = product.uuid
+
+      // uuid.push(arrayUuids)
+      prod.push({uuid, quantity: 1})
+
+      // products: [
+      //   {uuid}
+
+      // data = {
+
+      // ],
+      //   payment_method
+      // }
+    })
+
+    console.log(prod);
+
+
 
   }
 
