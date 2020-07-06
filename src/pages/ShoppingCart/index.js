@@ -17,6 +17,8 @@ const ShoppingCart = (props) => {
   const [valueDish, setValueDish] = useState([])
   const [qtdProducts, setQtdProducts] = useState([])
   const [checkOutTotal, setCheckOutTotal] = useState([])
+  const [payment_method, setPayment_method] = useState()
+
   // const [min_estimative, setMin_estimative] = useState(0)
   // const [max_estimative, setMax_estimative] = useState(0)
 
@@ -97,11 +99,38 @@ const ShoppingCart = (props) => {
     let modalPayment = document.querySelectorAll('.paymentMethod span')
 
     modalPayment.forEach(span => {
-      console.log(span);
       span.classList.remove('selected')
-
     })
+
+
+
+    switch (event.target.textContent) {
+      case 'Mercado Vale':
+        setPayment_method(0)
+        break;
+
+      case 'Mercado Pago':
+        setPayment_method(1)
+        break;
+
+      case 'Dinheiro':
+        setPayment_method(2)
+        break;
+
+      default:
+        break;
+    }
     event.target.classList.add('selected')
+  }
+
+  async function handleSubmitOrder(event) {
+
+    console.log(products[0]);
+
+    let data = {
+      products
+    }
+
   }
 
   return (
@@ -140,6 +169,12 @@ const ShoppingCart = (props) => {
 
           {/* {regular < valueDish ? console.log('sem saldo')
             : console.log('pedido finalizado')} */}
+
+            {/* {console.log(payment_method)}
+            {console.log(payment_method)}
+            {console.log(payment_method)}
+            {console.log(payment_method)} */}
+            {/* {console.log(products)} */}
 
           <ContainerDish>
 
@@ -201,7 +236,7 @@ const ShoppingCart = (props) => {
 
                     <button
                       className='btn-confirm'
-
+                      onClick={handleSubmitOrder}
                     >
                       Confirmar
                     </button>
