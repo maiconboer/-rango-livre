@@ -23,12 +23,24 @@ const ShoppingCart = (props) => {
   const [checkOutTotal, setCheckOutTotal] = useState([])
   const [payment_method, setPayment_method] = useState()
 
-  const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('@RangoLivre:user')));
+
   const token = localStorage.getItem('@RangoLivre:token');
 
   let meal = user.meal_allowance_balance;
   let regular = user.regular_balance;
   let total = regular + meal;
+
+  useEffect(() => {
+    async function getUser() {
+      const userResponse = await api.get(`users/${user.uuid}`, {headers: {
+        Authorization: `Bearer ${token}`
+      }})
+      localStorage.setItem('@RangoLivre:user', JSON.stringify(user));
+      setUser(userResponse.data)
+    }
+    getUser();
+  }, [])
 
   useEffect(() => {
     async function getProducts() {

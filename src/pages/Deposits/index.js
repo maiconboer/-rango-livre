@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 
 import {FiCreditCard, FiDollarSign, FiChevronsRight, FiChevronsLeft } from 'react-icons/fi'
@@ -18,7 +18,7 @@ const Deposits = () => {
   const { addToast } = useToast();
   const history = useHistory();
 
-  const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('@RangoLivre:user')));;
 
   const token = localStorage.getItem('@RangoLivre:token');
 
@@ -27,6 +27,16 @@ const Deposits = () => {
   let total = regular + meal;
   let city = user.addresses[0].city;
 
+  useEffect(() => {
+    async function getUser() {
+      const userResponse = await api.get(`users/${user.uuid}`, {headers: {
+        Authorization: `Bearer ${token}`
+      }})
+      localStorage.setItem('@RangoLivre:user', JSON.stringify(user));
+      setUser(userResponse.data)
+    }
+    getUser();
+  }, [])
 
   function handleChangeInput(event) {
     const { value, maxLength } = event.target;

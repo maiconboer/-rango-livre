@@ -26,7 +26,6 @@ const Transfer = () => {
   });
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('@RangoLivre:user')));
 
-
   const { addToast } = useToast();
   const history = useHistory();
 
