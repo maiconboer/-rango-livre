@@ -55,7 +55,7 @@ const Deposits = () => {
         addToast({
           type: 'success',
           title: 'Depósito realizado',
-          description: 'Deposito realizado com sucesso, atualizando valores, faça login novamente',
+          description: 'Deposito realizado com sucesso, Redirecionando para home-page',
         });
 
         setTimeout(() => {
