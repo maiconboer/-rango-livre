@@ -42,6 +42,8 @@ const Transfer = () => {
       ...formData,
       [name]: value,
     });
+
+    console.log(formData);
   }
 
   async function handleSubmitTransfer(event) {
@@ -65,12 +67,14 @@ const Transfer = () => {
       },
     );
 
+    console.log(response);
+
     if (response.status === 200 || response.status === 201) {
       addToast({
         type: 'success',
         title: 'Tranferêcia realizada',
         description:
-          'Tranferêcia realizada com sucesso, atualizando valores, faça login novamente',
+          'Tranferêcia realizado com sucesso, atualizando valores, faça login novamente',
       });
 
       setTimeout(() => {
@@ -79,7 +83,7 @@ const Transfer = () => {
         localStorage.removeItem('@RangoLivre:user');
 
         document.location.reload(true);
-      }, 5000);
+      }, 2000);
     }
   }
 
