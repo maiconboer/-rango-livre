@@ -17,7 +17,13 @@ import Button from '../../components/Button';
 import { Container, Content, UserData, Cash, ContainerForm } from './styles';
 
 const Deposits = () => {
-  let [valueDeposit, setValueDeposit] = useState();
+  const [formData, setFormData] = useState({
+    amount: 0,
+    accountType: 0,
+    toCPF: '',
+    timestamp: '',
+    scheduled: true,
+  });
 
   const { addToast } = useToast();
 
@@ -28,28 +34,29 @@ const Deposits = () => {
   let meal = user.meal_allowance_balance;
   let regular = user.regular_balance;
   let total = regular + meal;
-  let city = user.addresses[0].city;
 
   function handleChangeInput(event) {
-    const { value, maxLength } = event.target;
-    const size = value.slice(0, maxLength);
+    const { name, value } = event.target;
 
-    setValueDeposit(size);
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   }
 
-  async function handleSubmitDeposit(event) {
+  async function handleSubmitTransfer(event) {
     event.preventDefault();
 
-    const input = document.querySelector('input');
-    let amount = Number(input.value);
-
-    console.log(token);
-    console.log(amount);
+    const { amount, accountType, toCPF, scheduled, timestamp } = formData;
 
     let response = await api.post(
-      'deposits',
+      'transactions',
       {
-        amount: amount,
+        amount,
+        account_type: Number(accountType),
+        to_CPF: toCPF,
+        scheduled: !scheduled,
+        timestamp: Number(Date.parse(timestamp)),
       },
       {
         headers: {
@@ -61,9 +68,9 @@ const Deposits = () => {
     if (response.status === 200) {
       addToast({
         type: 'success',
-        title: 'Depósito realizado',
+        title: 'Tranferêcia realizada',
         description:
-          'Deposito realizado com sucesso, atualizando valores, faça login novamente',
+          'Tranferêcia realizado com sucesso, atualizando valores, faça login novamente',
       });
 
       setTimeout(() => {
@@ -118,13 +125,12 @@ const Deposits = () => {
           </Link>
 
           <ContainerForm>
-            <form onSubmit={handleSubmitDeposit}>
+            <form onSubmit={handleSubmitTransfer}>
               <input
                 type="number"
                 name="amount"
                 placeholder="Valor da transferência. Ex: 300"
                 maxLength="3"
-                value={valueDeposit}
                 onChange={handleChangeInput}
               />
 
