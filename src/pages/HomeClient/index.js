@@ -28,7 +28,7 @@ const HomeClient = () => {
       const userResponse = await api.get(`users/${user.uuid}`, {headers: {
         Authorization: `Bearer ${token}`
       }})
-
+      localStorage.setItem('@RangoLivre:user', JSON.stringify(user));
       setProducts([...products, response.data.products ])
       setUser(userResponse.data)
     }

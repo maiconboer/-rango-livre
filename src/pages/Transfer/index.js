@@ -53,7 +53,7 @@ const Transfer = () => {
       const userResponse = await api.get(`users/${user.uuid}`, {headers: {
         Authorization: `Bearer ${token}`
       }})
-
+      localStorage.setItem('@RangoLivre:user', JSON.stringify(user));
       setUser(userResponse.data)
     }
     getUser();
