@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 
 import {
   FiCreditCard,
@@ -24,15 +24,17 @@ const Transfer = () => {
     timestamp: '',
     scheduled: true,
   });
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('@RangoLivre:user')));
+
 
   const { addToast } = useToast();
 
-  const user = JSON.parse(localStorage.getItem('@RangoLivre:user'));
+  const [regular, setRegular] = useState(user.regular_balance)
 
   const token = localStorage.getItem('@RangoLivre:token');
 
   let meal = user.meal_allowance_balance;
-  let regular = user.regular_balance;
+  // let regular = user.regular_balance;
   let total = regular + meal;
 
   function handleChangeInput(event) {
@@ -45,6 +47,17 @@ const Transfer = () => {
 
     console.log(formData);
   }
+
+  useEffect(() => {
+    async function getUser() {
+      const userResponse = await api.get(`users/${user.uuid}`, {headers: {
+        Authorization: `Bearer ${token}`
+      }})
+      localStorage.setItem('@RangoLivre:user', JSON.stringify(user));
+      setUser(userResponse.data)
+    }
+    getUser();
+  }, [])
 
   async function handleSubmitTransfer(event) {
     event.preventDefault();
@@ -67,23 +80,15 @@ const Transfer = () => {
       },
     );
 
-    console.log(response);
-
-    if (response.status === 200 || response.status === 201) {
+    if (response.status === 201) {
       addToast({
         type: 'success',
-        title: 'Tranferêcia realizada',
+        title: 'Transferência realizada',
         description:
-          'Tranferêcia realizado com sucesso, atualizando valores, faça login novamente',
+          'Transferência realizada com sucesso.',
       });
 
-      setTimeout(() => {
-        localStorage.removeItem('@RangoLivre:purchase');
-        localStorage.removeItem('@RangoLivre:token');
-        localStorage.removeItem('@RangoLivre:user');
-
-        document.location.reload(true);
-      }, 2000);
+      setRegular(response.data.regular_balance)
     }
   }
 
