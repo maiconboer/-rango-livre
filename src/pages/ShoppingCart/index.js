@@ -12,7 +12,7 @@ import SelectDish from '../../components/SelectDish'
 
 const ShoppingCart = (props) => {
 
-  const [products, setProducts] = useState([])
+  const [allProductsPurchase, setAllProductsPurchase] = useState([])
   const [dataAboutProducts, setDataAboutProducts] = useState([])
   const [valueDish, setValueDish] = useState([])
   const [qtdProducts, setQtdProducts] = useState([])
@@ -68,7 +68,7 @@ const ShoppingCart = (props) => {
             }
 
             allProducts.push(data[0].data.product)
-            setProducts([...products, allProducts])
+            setAllProductsPurchase([...allProductsPurchase, allProducts])
 
           });
         }
@@ -125,27 +125,23 @@ const ShoppingCart = (props) => {
   async function handleSubmitOrder(event) {
 
     let data = {}
-    // let uuid = []
-    let prod = []
 
-    products[0].forEach((product, index) => {
+    let products = []
+
+    allProductsPurchase[0].forEach((product, index) => {
     console.log(product);
       let uuid = product.uuid
 
-      // uuid.push(arrayUuids)
-      prod.push({uuid, quantity: 1})
 
-      // products: [
-      //   {uuid}
+      products.push({uuid, quantity: 1})
 
-      // data = {
-
-      // ],
-      //   payment_method
-      // }
+      data = {
+        products,
+        payment_method
+      }
     })
 
-    console.log(prod);
+    console.log(data);
 
 
 
@@ -196,8 +192,8 @@ const ShoppingCart = (props) => {
 
           <ContainerDish>
 
-            { products[0] && products[0] !== undefined
-            ? products[0].map((product, index) => (
+            { allProductsPurchase[0] && allProductsPurchase[0] !== undefined
+            ? allProductsPurchase[0].map((product, index) => (
               <SelectDish
                 key={product.uuid}
                 product={product}
