@@ -21,8 +21,12 @@ O Rango Livre é uma aplicação de delivery de comida diferente de todas as out
 - Yup
 - Axios
 
-## Deploy
+## Importante:
 
-- Netlify
+Os pratos são listados de acordo com a localização, quando for cadastrar um usuário use um CEP de São Paulo capital.
+
+## Deploy:
+
+- [Netlify](https://rangolivre.netlify.app/)
 
 
