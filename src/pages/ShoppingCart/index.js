@@ -79,7 +79,6 @@ const ShoppingCart = (props) => {
   getProducts();
   }, [])
 
-  // criar a lógica paa verificar se o cliente possui saldo (mercado pago ou mercado vale) para finalizar o pedido, se a compra for efetuada com sucesso, remover o modal de escolher forma de pagamento e renderizar o modal de finalização do pedido, caso não houver saldo, renderizar modal sobre erro no pedido e etc
 
   function handleShowModalMethodPayment() {
     const modalMethodPayment = document.querySelector('.paymentMethod')
@@ -89,10 +88,8 @@ const ShoppingCart = (props) => {
   function handleRemoveModalMethodPayment() {
     const modalMethodPayment = document.querySelector('.paymentMethod')
 
-    const InputPassword = document.querySelector('.password')
     modalMethodPayment.classList.remove('active')
 
-    InputPassword.value = '';
   }
 
   function handleSelectPayment(event) {
