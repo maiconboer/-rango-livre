@@ -41,8 +41,6 @@ const Transfer = () => {
       ...formData,
       [name]: value,
     });
-
-    console.log(formData);
   }
 
   useEffect(() => {
