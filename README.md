@@ -29,7 +29,7 @@ O Rango Livre é uma aplicação de delivery de comida diferente de todas as out
 
 ## Importante:
 
-Os pratos são listados de acordo com a localização, quando for cadastrar um usuário use um CEP de São Paulo capital.
+Os pratos são listados de acordo com a localização, **quando for cadastrar um usuário use um CEP de São Paulo capital.**
 
 ## Deploy:
 
