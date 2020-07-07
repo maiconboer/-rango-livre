@@ -10,6 +10,10 @@ Imagine-se nesse novo mundo e o que poderíamos fazer para melhorar a experiênc
 
 ![rango](https://user-images.githubusercontent.com/48728541/86552012-1f66a980-bf1d-11ea-8348-309563ee4529.png)
 
+<p align=center>
+<img src=".github/image.jpg"/>
+<p>
+
 O Rango Livre é uma aplicação de delivery de comida diferente de todas as outras. Ele conta com uma integração direta com o mercado pago, e facilita os pagamentos através de vale refeição. Viemos para revolucionar o mercado, com taxas menores e a possibilidade de transferir e depositar dinheiro dentro da aplicação para outros usuários. Todas as transações possuem confirmação via WhatsApp.
 
 ## Protótipo: 
